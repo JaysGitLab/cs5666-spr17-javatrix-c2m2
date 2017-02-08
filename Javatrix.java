@@ -18,5 +18,7 @@
 public class Javatrix extends java.lang.Object 
     implements java.lang.Cloneable, java.io.Serializable 
 {
-    private double[][] matrix;
+    // Make this private after getArray() is implemented.
+    // Need to access for unit tests for constructors initially.
+    double[][] matrix;
 }

@@ -27,6 +27,6 @@ clean:
 test: Javatrix.class JavatrixTest.class 
 	java -cp .:$(JUNIT_JAR):$(HAMCREST_JAR) org.junit.runner.JUnitCore JavatrixTest
 
-check: Javatrix.java
-	checkstyle Javatrix.java
+check: Javatrix.java JavatrixTest.java
+	checkstyle Javatrix.java JavatrixTest.java
 
