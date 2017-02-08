@@ -18,6 +18,5 @@
 public class Javatrix extends java.lang.Object 
     implements java.lang.Cloneable, java.io.Serializable 
 {
-    
     private double[][] matrix;
 }
