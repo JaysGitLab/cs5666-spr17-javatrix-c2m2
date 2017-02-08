@@ -32,7 +32,7 @@ public class JavatrixTest
     @Before
     public void setUp()
     {
-        matrix = new double[][];
+        matrix = new double[m][n];
     }
 
     /**
