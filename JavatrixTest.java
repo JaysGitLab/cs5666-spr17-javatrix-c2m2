@@ -75,16 +75,16 @@ public class JavatrixTest
     {
         m = 5;
         n = 4;
-        double c = 2.2;
+        double s = 2.2;
         matrix = new double[m][n];
         for (int i = 0; i < m; i++)
         {
             for (int j = 0; j < n; j++)
             {
-                matrix[i][j] = c;
+                matrix[i][j] = s;
             }
         }
-        Javatrix actual = new Javatrix(m, n, c);
+        Javatrix actual = new Javatrix(m, n, s);
         assertArrayEquals("failure - double arrays not same",
             matrix, actual.matrix);
     }
@@ -97,8 +97,8 @@ public class JavatrixTest
     {
         m = 5;
         n = 4;
-        double c = 2.2;
-        Javatrix actual = new Javatrix(m, n, c);
+        double s = 2.2;
+        Javatrix actual = new Javatrix(m, n, s);
         assertNotNull("should not be null", actual);
     }
     
