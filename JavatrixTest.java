@@ -3,6 +3,7 @@ import org.junit.After;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
 
 /**
  * JavatrixTest.java
@@ -117,6 +118,19 @@ public class JavatrixTest
         n = 4;
         Javatrix actual = new Javatrix(m, n);
         double s = actual.get(6, 6);
+    }
+
+    /**
+     * Test getArray function.
+     */
+    @Test
+    public void test18()
+    {
+        m = 5;
+        n = 4;
+        Javatrix actual = new Javatrix(m, n);
+        double[][] marix = actual.getArray();
+        assertSame("should be same", matrix, actual.matrix);
     }
     
     /**
