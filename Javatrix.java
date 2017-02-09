@@ -20,7 +20,7 @@ public class Javatrix extends java.lang.Object
 {
     // Make this private after getArray() is implemented.
     // Need to access for unit tests for constructors initially.
-    double[][] matrix;
+    private double[][] matrix;
     private int m;
     private int n;
 

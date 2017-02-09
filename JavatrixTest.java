@@ -45,7 +45,7 @@ public class JavatrixTest
         }
         Javatrix actual = new Javatrix(m, n);
         assertArrayEquals("failure - double arrays not same", 
-            matrix, actual.matrix);
+            matrix, actual.getArray());
     }
 
     /** 
@@ -79,7 +79,7 @@ public class JavatrixTest
         }
         Javatrix actual = new Javatrix(m, n, s);
         assertArrayEquals("failure - double arrays not same",
-            matrix, actual.matrix);
+            matrix, actual.getArray());
     }
 
     /**
@@ -131,7 +131,7 @@ public class JavatrixTest
         Javatrix actual = new Javatrix(m, n);
         double[][] marix = null; 
         matrix = actual.getArray();
-        assertSame("should be same", matrix, actual.matrix);
+        assertSame("should be same", matrix, actual.getArray());
     }
     
     /**
