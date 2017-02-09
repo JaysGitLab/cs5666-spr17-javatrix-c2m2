@@ -129,7 +129,8 @@ public class JavatrixTest
         m = 5;
         n = 4;
         Javatrix actual = new Javatrix(m, n);
-        double[][] marix = actual.getArray();
+        double[][] marix = null; 
+        matrix = actual.getArray();
         assertSame("should be same", matrix, actual.matrix);
     }
     

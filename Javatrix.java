@@ -81,4 +81,14 @@ public class Javatrix extends java.lang.Object
         }
         return matrix[i][j];
     }
+
+    /**
+     * Access the internal two-dimensional array.
+     *
+     * @return double[][] pointer to 2D array of matrix elements
+     */
+    public double[][] getArray()
+    {
+        return matrix;
+    }
 }
