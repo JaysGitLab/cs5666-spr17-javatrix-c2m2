@@ -3,6 +3,7 @@ import org.junit.Before;
 import org.junit.After;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 /**
  * JavatrixTest.java
@@ -101,6 +102,20 @@ public class JavatrixTest
         Javatrix actual = new Javatrix(m, n, s);
         assertNotNull("should not be null", actual);
     }
+
+    /**
+     * Test get function.
+     */
+    @Test
+    public void test18()
+    {
+        m = 5;
+        n = 4;
+        double s = 2.2;
+        Javatrix actual = new Javatrix(m, n, s);
+        assertEquals("failure - doubles are not equal", s, actual.get(1, 2));
+    }
+
     
     /**
      * Tear down after unit tests.
