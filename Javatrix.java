@@ -21,6 +21,8 @@ public class Javatrix extends java.lang.Object
     // Make this private after getArray() is implemented.
     // Need to access for unit tests for constructors initially.
     double[][] matrix;
+    private int m;
+    private int n;
 
     /**
      * Construct an m-by-n matrix of zeros.
@@ -57,5 +59,22 @@ public class Javatrix extends java.lang.Object
                 matrix[i][j] = s;
             }
         }
+    }
+
+    /**
+     * Get a single element.
+     *
+     * @param i row
+     * @param j column
+     * @return element at position (i, j)
+     * @throws ArrayIndexOutOfBoundsException
+     */
+    public double get(int i, int j) throws ArrayIndexOutOfBoundsException
+    {
+        if (i >= m || j >= n)
+        {
+            throw new ArrayIndexOutOfBoundsException();
+        }
+        return matrix[i][j];
     }
 }
