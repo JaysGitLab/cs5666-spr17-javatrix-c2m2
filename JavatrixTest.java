@@ -27,14 +27,6 @@ public class JavatrixTest
     private int n;
     
     /**
-     * Set up for unit tests.
-     */
-    @Before
-    public void setUp()
-    {
-    }
-
-    /**
      * Test constructor of zeros for double array of zeros.
      */
     @Test
