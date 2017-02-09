@@ -113,19 +113,19 @@ public class JavatrixTest
         n = 4;
         double s = 2.2;
         Javatrix actual = new Javatrix(m, n, s);
-        assertEquals("failure - doubles are not equal", s, actual.get(1, 2));
+        assertEquals("failure - doubles are not equal", s, actual.get(1, 2), 0);
     }
     
     /**
      * Test get function for out of bounds exception.
      */
-    @Test(expected=ArrayIndexOutOfBoundsException.class)
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
     public void test18b()
     {
         m = 5;
         n = 4;
         Javatrix actual = new Javatrix(m, n);
-        double s = actual.et(6, 6);
+        double s = actual.get(6, 6);
     }
     
     /**

@@ -32,6 +32,8 @@ public class Javatrix extends java.lang.Object
      */
     public Javatrix(int m, int n)
     {
+        this.m = m;
+        this.n = n;
         matrix = new double[m][n];
         for (int i = 0; i < m; i++)
         {
@@ -51,6 +53,8 @@ public class Javatrix extends java.lang.Object
      */
     public Javatrix(int m, int n, double s)
     {
+        this.m = m;
+        this.n = n;
         matrix = new double[m][n];
         for (int i = 0; i < m; i++)
         {
@@ -67,7 +71,7 @@ public class Javatrix extends java.lang.Object
      * @param i row
      * @param j column
      * @return element at position (i, j)
-     * @throws ArrayIndexOutOfBoundsException
+     * @throws ArrayIndexOutOfBoundsException if out of bounds of array
      */
     public double get(int i, int j) throws ArrayIndexOutOfBoundsException
     {
