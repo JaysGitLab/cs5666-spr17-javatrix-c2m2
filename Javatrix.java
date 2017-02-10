@@ -36,6 +36,12 @@ public class Javatrix extends java.lang.Object
         matrix = new double[m][n];
         for (int i = 0; i < m; i++)
         {
+            if (arr[i].length != n)
+            {
+                String ex = "All rows must be the same length.";
+                throw new IllegalArgumentException(ex);
+                                                       
+            }
             for (int j = 0; j < n; j++)
             {
                 matrix[i][j] = arr[i][j];

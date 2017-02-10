@@ -32,10 +32,12 @@ public class JavatrixTest
     @Test
     public void matrix2DArray()
     {
-        matrix = new double[5][4];
-        for (int i = 0; i < 5; i++)
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
         {
-            for (int j = 0; j < 4; j++)
+            for (int j = 0; j < n; j++)
             {
                 matrix[i][j] = java.lang.Math.random() * 10 + 1; 
             }
@@ -45,6 +47,23 @@ public class JavatrixTest
         assertArrayEquals(matrix, actual.matrix);
 
     }
+
+    /**
+     * Test constructor that takes a 2D Array
+     * with invalid argument.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void matrix2DArrayThrowsException()
+    {
+        m = 2;
+        n = 2;
+        matrix = new double[m][];
+        matrix[0] = new double[n];
+        matrix[1] = new double[3];
+
+        Javatrix actual = new Javatrix(matrix);
+    }
+
     
     /**
      * Test constructor of zeros for double array of zeros.
