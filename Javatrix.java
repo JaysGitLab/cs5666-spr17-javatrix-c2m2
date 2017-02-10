@@ -25,7 +25,7 @@ public class Javatrix extends java.lang.Object
     int n;
 
     /**
-     * Construct a matric from a 2D array.
+     * Construct a matrix from a 2D array.
      *
      * @param arr - 2D array to be copied into matrix
      **/
