@@ -25,27 +25,23 @@ public class Javatrix extends java.lang.Object
     int n;
 
     /**
-     ** Construct a matric from a 2D array.
-     **
-     ** @param A - 2D array to be copied into matrix
+     * Construct a matric from a 2D array.
+     *
+     * @param arr - 2D array to be copied into matrix
      **/
-
-     public Javatrix(double[][] A)
-     {
-         this.m = A.length;
-         this.n = A[0].length;
-
-         matrix = new double[m][n];
-
-         for (int i = 0; i < m; i++)
-         {
-             for (int j = 0; j < n; j++)
-             {
-                 matrix[i][j] = A[i][j];
-
-             }
-         }
-     }
+    public Javatrix(double[][] arr)
+    {
+        this.m = arr.length;
+        this.n = arr[0].length;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = arr[i][j];
+            }
+        }
+    }
 
     /**
      * Construct an m-by-n matrix of zeros.
