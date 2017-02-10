@@ -91,4 +91,14 @@ public class Javatrix extends java.lang.Object
     {
         return matrix;
     }
+
+    /**
+     * Get column dimension.
+     *
+     * @return n number of columns
+     */
+    public int getColumnDimension()
+    {
+        return n;
+    }
 }
