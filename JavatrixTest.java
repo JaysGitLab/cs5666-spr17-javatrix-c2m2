@@ -29,7 +29,7 @@ public class JavatrixTest
      * Test constructor of zeros for double array of zeros.
      */
     @Test
-    public void test4a()
+    public void matrixArrayOfZeros()
     {
         m = 5;
         n = 4;
@@ -50,7 +50,7 @@ public class JavatrixTest
      * Test constructor of zeros for not null.
      */
     @Test
-    public void test4b()
+    public void matrixArrayOfZerosNotNull()
     {
         m = 5;
         n = 4;
