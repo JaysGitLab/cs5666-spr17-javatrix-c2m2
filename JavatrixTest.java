@@ -30,7 +30,7 @@ public class JavatrixTest
      * Test constructor of zeros for double array of zeros.
      */
     @Test
-    public void test4a()
+    public void matrixArrayOfZeros()
     {
         m = 5;
         n = 4;
@@ -51,7 +51,7 @@ public class JavatrixTest
      * Test constructor of zeros for not null.
      */
     @Test
-    public void test4b()
+    public void matrixArrayOfZerosNotNull()
     {
         m = 5;
         n = 4;
@@ -63,7 +63,7 @@ public class JavatrixTest
      * Test constructor of constant for double array of constant.
      */
     @Test
-    public void test5a()
+    public void matrixArrayOfConstant()
     {
         m = 5;
         n = 4;
@@ -85,7 +85,7 @@ public class JavatrixTest
      * Test constructor of constant for not null.
      */
     @Test
-    public void test5b()
+    public void matrixArrayOfConstantNotNull()
     {
         m = 5;
         n = 4;
@@ -98,7 +98,7 @@ public class JavatrixTest
      * Test get function for in bounds value.
      */
     @Test
-    public void test18a()
+    public void getInBounds()
     {
         m = 5;
         n = 4;
@@ -111,7 +111,7 @@ public class JavatrixTest
      * Test get function for out of bounds exception.
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
-    public void test18b()
+    public void getOutOfBounds()
     {
         m = 5;
         n = 4;
