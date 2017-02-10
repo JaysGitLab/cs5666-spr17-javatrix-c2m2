@@ -124,7 +124,7 @@ public class JavatrixTest
      * Test getArray function.
      */
     @Test
-    public void test18()
+    public void test19()
     {
         m = 5;
         n = 4;
