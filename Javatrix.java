@@ -101,4 +101,14 @@ public class Javatrix extends java.lang.Object
     {
         return n;
     }
+
+    /**
+     * Get row dimension.
+     *
+     * @return m number of rows
+     */
+    public int getRowDimension()
+    {
+        return m;
+    }
 }

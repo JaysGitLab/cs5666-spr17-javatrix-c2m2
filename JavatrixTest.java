@@ -156,7 +156,7 @@ public class JavatrixTest
         m = 5;
         n = 4;
         Javatrix actual = new Javatrix(m, n);
-        int row = actual.getColumnDimension();
+        int row = actual.getRowDimension();
         assertEquals("failure - ints are not equal", m, row);
     }
     
