@@ -97,6 +97,41 @@ public class JavatrixTest
         Javatrix actual = new Javatrix(m, n);
         assertNotNull("should not be null", actual);
     }
+
+    /**
+     * Test constructor of constant for double array of constant.
+     */
+    @Test
+    public void matrixArrayOfConstant()
+    {
+        m = 5;
+        n = 4;
+        double s = 2.2;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = s;
+            }
+        }
+        Javatrix actual = new Javatrix(m, n, s);
+        assertArrayEquals("failure - double arrays not same",
+            matrix, actual.matrix);
+    }
+
+    /**
+     * Test constructor of constant for not null.
+     */
+    @Test
+    public void matrixArrayOfConstantNotNull()
+    {
+        m = 5;
+        n = 4;
+        double s = 2.2;
+        Javatrix actual = new Javatrix(m, n, s);
+        assertNotNull("should not be null", actual);
+    }
     
     /**
      * Tear down after unit tests.
