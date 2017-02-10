@@ -133,6 +133,19 @@ public class JavatrixTest
         matrix = actual.getArray();
         assertSame("should be same", matrix, actual.getArray());
     }
+
+    /**
+     * Test getColumnDimension function.
+     */
+    @Test
+    public void test21()
+    {
+        m = 5;
+        n = 4;
+        Javatrix actual = new Javatrix(m, n);
+        int col = actual.getColumnDimension();
+        assertEquals("failure - ints are not equal", n, col);
+    }
     
     /**
      * Tear down after unit tests.
