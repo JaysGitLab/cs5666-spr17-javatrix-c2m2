@@ -18,7 +18,9 @@
 public class Javatrix extends java.lang.Object 
     implements java.lang.Cloneable, java.io.Serializable 
 {
-    private double[][] matrix;
+    // Make this private after getArray() is implemented.
+    // Need to access for unit tests for constructors initially.
+    double[][] matrix;
     int m;
     int n;
 
@@ -30,8 +32,8 @@ public class Javatrix extends java.lang.Object
 
      public Javatrix(double[][] A)
      {
-         this.m = A[0].length;
-         this.n = A[1].length;
+         this.m = A.length;
+         this.n = A[0].length;
 
          matrix = new double[m][n];
 
@@ -44,6 +46,26 @@ public class Javatrix extends java.lang.Object
              }
          }
      }
+
+    /**
+     * Construct an m-by-n matrix of zeros.
+     *
+     * @param m number of rows
+     * @param n number of columns
+     */
+    public Javatrix(int m, int n)
+    {
+        this.m = m;
+        this.n = n;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = 0;
+            }
+        }
+    }
 
 }
 
