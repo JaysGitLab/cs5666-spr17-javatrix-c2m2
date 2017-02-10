@@ -4,6 +4,7 @@ import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertNotSame;
 
 /**
  * JavatrixTest.java
@@ -31,7 +32,7 @@ public class JavatrixTest
      * Test constructor of zeros for double array of zeros.
      */
     @Test
-    public void test4a()
+    public void matrixArrayOfZeros()
     {
         m = 5;
         n = 4;
@@ -52,7 +53,7 @@ public class JavatrixTest
      * Test constructor of zeros for not null.
      */
     @Test
-    public void test4b()
+    public void matrixArrayOfZerosNotNull()
     {
         m = 5;
         n = 4;
@@ -64,7 +65,7 @@ public class JavatrixTest
      * Test constructor of constant for double array of constant.
      */
     @Test
-    public void test5a()
+    public void matrixArrayOfConstant()
     {
         m = 5;
         n = 4;
@@ -86,7 +87,7 @@ public class JavatrixTest
      * Test constructor of constant for not null.
      */
     @Test
-    public void test5b()
+    public void matrixArrayOfConstantNotNull()
     {
         m = 5;
         n = 4;
@@ -99,7 +100,7 @@ public class JavatrixTest
      * Test get function for in bounds value.
      */
     @Test
-    public void test18a()
+    public void getInBounds()
     {
         m = 5;
         n = 4;
@@ -112,7 +113,7 @@ public class JavatrixTest
      * Test get function for out of bounds exception.
      */
     @Test(expected = ArrayIndexOutOfBoundsException.class)
-    public void test18b()
+    public void getOutOfBounds()
     {
         m = 5;
         n = 4;
@@ -121,10 +122,10 @@ public class JavatrixTest
     }
 
     /**
-     * Test getArray function.
+     * Test getArray function, should be the same.
      */
     @Test
-    public void test19()
+    public void getArraySame()
     {
         m = 5;
         n = 4;
@@ -133,18 +134,48 @@ public class JavatrixTest
         matrix = actual.getArray();
         assertSame("should be same", matrix, actual.getArray());
     }
-
+    
     /**
-     * Test getColumnDimension function.
+     * Test getArray function, not the same.
      */
     @Test
-    public void test21()
+    public void getArrayNotSame()
+    {
+        m = 5;
+        n = 4;
+        Javatrix actualA = new Javatrix(m, n);
+        Javatrix actualB = new Javatrix(m, n);
+        double[][] matrixA = null;
+        double[][] matrixB = null;
+        matrixA = actualA.getArray();
+        matrixB = actualB.getArray();
+        assertNotSame("should not be same", matrixA, matrixB);
+    }
+
+    /**
+     * Test getColumnDimension function, valid.
+     */
+    @Test
+    public void getColumnDimensionValid()
     {
         m = 5;
         n = 4;
         Javatrix actual = new Javatrix(m, n);
         int col = actual.getColumnDimension();
         assertEquals("failure - ints are not equal", n, col);
+    }
+
+    /**
+     * Test getColumnDimension function, invalid.
+     */
+    @Test
+    public void getColumnDimensionInvalid()
+    {
+        m = 5;
+        n = 4;
+        Javatrix actual = new Javatrix(m, n);
+        int col = actual.getColumnDimension();
+        assertNotSame("should not be same", m, col);
     }
     
     /**
