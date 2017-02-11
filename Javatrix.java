@@ -28,8 +28,10 @@ public class Javatrix extends java.lang.Object
      * Construct a matrix from a 2D array.
      *
      * @param arr - 2D array to be copied into matrix
+     * @throws IllegalArgumentException if rows are
+     * not the same length.
      **/
-    public Javatrix(double[][] arr)
+    public Javatrix(double[][] arr) throws IllegalArgumentException
     {
         this.m = arr.length;
         this.n = arr[0].length;
@@ -40,7 +42,6 @@ public class Javatrix extends java.lang.Object
             {
                 String ex = "All rows must be the same length.";
                 throw new IllegalArgumentException(ex);
-                                                       
             }
             for (int j = 0; j < n; j++)
             {

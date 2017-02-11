@@ -25,7 +25,6 @@ public class JavatrixTest
     private int m;
     private int n;
 
-
     /**
      * Test constructor that takes a 2D Array.
      */
@@ -42,10 +41,8 @@ public class JavatrixTest
                 matrix[i][j] = java.lang.Math.random() * 10 + 1; 
             }
         }
-        
         Javatrix actual = new Javatrix(matrix);
         assertArrayEquals(matrix, actual.matrix);
-
     }
 
     /**
