@@ -205,6 +205,20 @@ public class JavatrixTest
     }
 
     /**
+     * Test getArrayCopy function,
+     * returns copy of array, not original.
+     */
+    @Test
+    public void getArrayCopyValid()
+    {
+        m = 5;
+        n = 4;
+        Javatrix actual = new Javatrix(m, n);
+        double[][] matrix = actual.getArrayCopy();
+        assertNotSame("should not be same", actual.getArray(), matrix);
+    }
+
+    /**
      * Tear down after unit tests.
      */
     @After

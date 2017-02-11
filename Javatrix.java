@@ -111,4 +111,22 @@ public class Javatrix extends java.lang.Object
     {
         return m;
     }
+
+    /**
+     * Copy the internal two-dimensional array.
+     *
+     * @return matrixCopy copy of internal array
+     */
+    public double[][] getArrayCopy()
+    {
+        double[][] matrixCopy = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrixCopy[i][j] = matrix[i][j];
+            }
+        }
+        return matrixCopy;
+    }
 }
