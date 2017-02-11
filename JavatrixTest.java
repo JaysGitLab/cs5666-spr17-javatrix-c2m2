@@ -60,7 +60,6 @@ public class JavatrixTest
 
         Javatrix actual = new Javatrix(matrix);
     }
-
     
     /**
      * Test constructor of zeros for double array of zeros.
