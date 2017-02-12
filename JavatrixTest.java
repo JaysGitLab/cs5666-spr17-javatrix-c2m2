@@ -233,6 +233,18 @@ public class JavatrixTest
     }
 
     /**
+     * Test set function, exception thrown.
+     */
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void setInvalid()
+    {
+        m = 5;
+        n = 4;
+        actual = new Javatrix(m, n);
+        actual.set(6, 5, 2.2);
+    }
+
+    /**
      * Tear down after unit tests.
      */
     @After

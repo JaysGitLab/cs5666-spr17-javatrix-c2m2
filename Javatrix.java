@@ -129,4 +129,22 @@ public class Javatrix extends java.lang.Object
         }
         return matrixCopy;
     }
+
+    /**
+     * Set a single element.
+     *
+     * @param i row index
+     * @param j column index
+     * @param s value to set to
+     * @throws ArrayIndexOutOfBoundsException (i, j) out of bounds
+     */
+    public void set(int i, int j, double s) 
+        throws ArrayIndexOutOfBoundsException
+    {
+        if (i >= m || j >= n)
+        {
+            throw new ArrayIndexOutOfBoundsException("Index out of bounds");
+        }
+        matrix[i][j] = s;
+    }
 }
