@@ -229,7 +229,8 @@ public class JavatrixTest
         n = 4;
         actual = new Javatrix(m, n);
         actual.set(1, 2, 2.2);
-        assertEquals("failure - doubles are not equal", 2.2, actual.get(1, 2));
+        assertEquals("failure - doubles are not equal", 
+            2.2, actual.get(1, 2), 0);
     }
 
     /**
