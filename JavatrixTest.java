@@ -214,8 +214,8 @@ public class JavatrixTest
         m = 5;
         n = 4;
         Javatrix actual = new Javatrix(m, n);
-        double[][] matrix = actual.getArrayCopy();
-        assertNotSame("should not be same", actual.getArray(), matrix);
+        double[][] matrixCopy = actual.getArrayCopy();
+        assertNotSame("should not be same", actual.getArray(), matrixCopy);
     }
 
     /**
