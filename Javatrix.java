@@ -23,6 +23,32 @@ public class Javatrix extends java.lang.Object
     private int n;
 
     /**
+     * Construct a matrix from a 2D array.
+     *
+     * @param arr - 2D array to be copied into matrix
+     * @throws IllegalArgumentException if rows are
+     * not the same length.
+     **/
+    public Javatrix(double[][] arr) throws IllegalArgumentException
+    {
+        this.m = arr.length;
+        this.n = arr[0].length;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            if (arr[i].length != n)
+            {
+                String ex = "All rows must be the same length.";
+                throw new IllegalArgumentException(ex);
+            }
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = arr[i][j];
+            }
+        }
+    }
+
+    /**
      * Construct an m-by-n matrix of zeros.
      *
      * @param m number of rows
@@ -153,15 +179,16 @@ public class Javatrix extends java.lang.Object
      * @return actual Matrix 
      * @throws IllegalArgumentException if rows have different length
      */
-    public static Matrix constructWithCopy(double[][] arr)
+    public static Javatrix constructWithCopy(double[][] arr) 
+        throws IllegalArgumentException
     {
-        m = arr.length;
-        n = arr[0].length;
-        for (int i = 1; i < m; i++)
+        int cols = arr[0].length;
+        for (int i = 1; i < arr.length; i++)
         {
-            if (arr[i].length != n)
+            if (arr[i].length != cols)
             {
-                throw new IllegalArgumentException("All rows must have same length");
+                throw new IllegalArgumentException(
+                    "All rows must have same length");
             }
         }
 
@@ -169,3 +196,4 @@ public class Javatrix extends java.lang.Object
         return actual;
     }
 }
+
