@@ -18,8 +18,6 @@
 public class Javatrix extends java.lang.Object 
     implements java.lang.Cloneable, java.io.Serializable 
 {
-    // Make this private after getArray() is implemented.
-    // Need to access for unit tests for constructors initially.
     private double[][] matrix;
     private int m;
     private int n;
@@ -146,5 +144,28 @@ public class Javatrix extends java.lang.Object
             throw new ArrayIndexOutOfBoundsException("Index out of bounds");
         }
         matrix[i][j] = s;
+    }
+
+    /**
+     * Construct a matrix from a copy of a 2-D array.
+     *
+     * @param arr Two-dimensional array of doubles
+     * @return actual Matrix 
+     * @throws IllegalArgumentException if rows have different length
+     */
+    public static Matrix constructWithCopy(double[][] arr)
+    {
+        m = arr.length;
+        n = arr[0].length;
+        for (int i = 1; i < m; i++)
+        {
+            if (arr[i].length != n)
+            {
+                throw new IllegalArgumentException("All rows must have same length");
+            }
+        }
+
+        Javatrix actual = new Javatrix(arr);
+        return actual;
     }
 }
