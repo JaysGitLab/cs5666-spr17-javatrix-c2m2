@@ -246,6 +246,34 @@ public class JavatrixTest
     }
 
     /**
+     * Test constructWithCopy function.
+     */
+    @Test
+    public void constructWithCopyValid()
+    {
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        actual = Javatrix.constructWithCopy(matrix);
+        assertArrayEquals("failure - double arrays are not same", 
+            matrix, actual.getArray());
+    }
+
+    /**
+     * Test constructWithCopy function, exception thrown.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void constructWithCopyException()
+    {
+        double[] a = {1.1, 2.2, 3.3};
+        double[] b = {4.4, 5.5};
+        matrix = new double[2][];
+        matrix[0] = a;
+        matrix[1] = b;
+        actual = Javatrix.constructWithCopy(matrix);
+    } 
+
+    /**
      * Tear down after unit tests.
      */
     @After
