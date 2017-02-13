@@ -3,6 +3,8 @@ import org.junit.After;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertNotSame;
 
 /**
  * JavatrixTest.java
@@ -80,7 +82,7 @@ public class JavatrixTest
         }
         Javatrix actual = new Javatrix(m, n);
         assertArrayEquals("failure - double arrays not same", 
-            matrix, actual.matrix);
+            matrix, actual.getArray());
     }
 
     /** 
@@ -114,7 +116,7 @@ public class JavatrixTest
         }
         Javatrix actual = new Javatrix(m, n, s);
         assertArrayEquals("failure - double arrays not same",
-            matrix, actual.matrix);
+            matrix, actual.getArray());
     }
 
     /**
@@ -153,6 +155,36 @@ public class JavatrixTest
         n = 4;
         Javatrix actual = new Javatrix(m, n);
         double s = actual.get(6, 6);
+    }
+
+    /**
+     * Test getArray function, should be the same.
+     */
+    @Test
+    public void getArraySame()
+    {
+        m = 5;
+        n = 4;
+        Javatrix actual = new Javatrix(m, n);
+        double[][] marix = null; 
+        matrix = actual.getArray();
+        assertSame("should be same", matrix, actual.getArray());
+    }
+    /**
+     * Test getArray function, not the same.
+     */
+    @Test
+    public void getArrayNotSame()
+    {
+        m = 5;
+        n = 4;
+        Javatrix actualA = new Javatrix(m, n);
+        Javatrix actualB = new Javatrix(m, n);
+        double[][] matrixA = null;
+        double[][] matrixB = null;
+        matrixA = actualA.getArray();
+        matrixB = actualB.getArray();
+        assertNotSame("should not be same", matrixA, matrixB);
     }
     
     /**

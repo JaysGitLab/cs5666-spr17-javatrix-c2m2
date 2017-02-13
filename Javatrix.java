@@ -20,7 +20,7 @@ public class Javatrix extends java.lang.Object
 {
     // Make this private after getArray() is implemented.
     // Need to access for unit tests for constructors initially.
-    double[][] matrix;
+    private double[][] matrix;
     private int m;
     private int n;
 
@@ -106,6 +106,16 @@ public class Javatrix extends java.lang.Object
             throw new ArrayIndexOutOfBoundsException();
         }
         return matrix[i][j];
+    }
+
+    /**
+     * Access the internal two-dimensional array.
+     *
+     * @return double[][] pointer to 2D array of matrix elements
+     */
+    public double[][] getArray()
+    {
+        return matrix;
     }
 }
 
