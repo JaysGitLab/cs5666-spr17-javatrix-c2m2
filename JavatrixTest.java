@@ -2,6 +2,7 @@ import org.junit.Test;
 import org.junit.After;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertEquals;
 
 /**
  * JavatrixTest.java
@@ -127,6 +128,31 @@ public class JavatrixTest
         double s = 2.2;
         Javatrix actual = new Javatrix(m, n, s);
         assertNotNull("should not be null", actual);
+    }
+
+    /**
+     * Test get function for in bounds value.
+     */
+    @Test
+    public void getInBounds()
+    {
+        m = 5;
+        n = 4;
+        double s = 2.2;
+        Javatrix actual = new Javatrix(m, n, s);
+        assertEquals("failure - doubles are not equal", s, actual.get(1, 2), 0);
+    }
+    
+    /**
+     * Test get function for out of bounds exception.
+     */
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void getOutOfBounds()
+    {
+        m = 5;
+        n = 4;
+        Javatrix actual = new Javatrix(m, n);
+        double s = actual.get(6, 6);
     }
     
     /**
