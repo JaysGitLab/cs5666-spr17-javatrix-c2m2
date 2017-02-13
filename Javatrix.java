@@ -25,6 +25,57 @@ public class Javatrix extends java.lang.Object
     private int n;
 
     /**
+     * Construct a matrix from a 2D array.
+     *
+     * @param arr - 2D array to be copied into matrix
+     * @throws IllegalArgumentException if rows are
+     * not the same length.
+     **/
+    public Javatrix(double[][] arr) throws IllegalArgumentException
+    {
+        this.m = arr.length;
+        this.n = arr[0].length;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            if (arr[i].length != n)
+            {
+                String ex = "All rows must be the same length.";
+                throw new IllegalArgumentException(ex);
+            }
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = arr[i][j];
+            }
+        }
+    }
+
+    /**
+     * Construct an x by y matrix from a 2D array.
+     * 
+     * @param arr - 2D array to be copied into matrix
+     * @param x - number of rows
+     * @param y - number of columns
+     */
+    public Javatrix(double[][] arr, int x, int y)
+    {
+        this.m = x;
+        this.n = y;
+        matrix = new double[m][n];
+        for (int i = 0; i < arr.length; i++)
+        {
+            for (int j = 0; j < arr[0].length; j++)
+            {
+                // If index not out of range for arr.
+                if (i < m && j < n)
+                {
+                    matrix[i][j] = arr[i][j]; 
+                }
+            }
+        }
+    }
+
+    /**
      * Construct an m-by-n matrix of zeros.
      *
      * @param m number of rows
@@ -102,3 +153,4 @@ public class Javatrix extends java.lang.Object
         return n;
     }
 }
+
