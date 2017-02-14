@@ -192,7 +192,6 @@ public class Javatrix extends java.lang.Object
     public double[][] getArrayCopy()
     {
         double[][] matrixCopy = new double[m][n];
-
         for (int i = 0; i < m; i++)
         {
             for (int j = 0; j < n; j++)
