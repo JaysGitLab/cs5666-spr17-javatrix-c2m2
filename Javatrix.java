@@ -144,7 +144,7 @@ public class Javatrix extends java.lang.Object
     }
 
     /**
-     * Return an m by n identitiy matrix.
+     * Generate an m by n identitiy matrix.
      *
      * @param m number of rows
      * @param n number of columns
