@@ -198,7 +198,7 @@ public class Javatrix extends java.lang.Object
             {
                 matrixCopy[i][j] = matrix[i][j];
             }
-        }            
+        }
         return matrixCopy;
     }
 
