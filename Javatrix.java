@@ -18,8 +18,6 @@
 public class Javatrix extends java.lang.Object 
     implements java.lang.Cloneable, java.io.Serializable 
 {
-    // Make this private after getArray() is implemented.
-    // Need to access for unit tests for constructors initially.
     private double[][] matrix;
     private int m;
     private int n;
@@ -153,7 +151,6 @@ public class Javatrix extends java.lang.Object
     public static Javatrix identity(int m, int n)
     {
         Javatrix identityMatrix = new Javatrix(m, n);
-
         for (int i = 0; i < m; i++)
         {
             for (int j = 0; j < n; j++)
@@ -164,8 +161,88 @@ public class Javatrix extends java.lang.Object
                 }
             }
         }
-
         return identityMatrix;
+    }
+
+    /**
+     * Get column dimension.
+     *
+     * @return n number of columns
+     */
+    public int getColumnDimension()
+    {
+        return n;
+    }
+
+    /**
+     * Get row dimension.
+     *
+     * @return m number of rows
+     */
+    public int getRowDimension()
+    {
+        return m;
+    }
+
+    /**
+     * Copy the internal two-dimensional array.
+     *
+     * @return matrixCopy copy of internal array
+     */
+    public double[][] getArrayCopy()
+    {
+        double[][] matrixCopy = new double[m][n];
+
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrixCopy[i][j] = matrix[i][j];
+            }
+        }            
+        return matrixCopy;
+    }
+
+    /**
+     * Set a single element.
+     *
+     * @param i row index
+     * @param j column index
+     * @param s value to set to
+     * @throws ArrayIndexOutOfBoundsException (i, j) out of bounds
+     */
+    public void set(int i, int j, double s) 
+        throws ArrayIndexOutOfBoundsException
+    {
+        if (i >= m || j >= n)
+        {
+            throw new ArrayIndexOutOfBoundsException("Index out of bounds");
+        }
+        matrix[i][j] = s;
+    }
+
+    /**
+     * Construct a matrix from a copy of a 2-D array.
+     *
+     * @param arr Two-dimensional array of doubles
+     * @return actual Matrix 
+     * @throws IllegalArgumentException if rows have different length
+     */
+    public static Javatrix constructWithCopy(double[][] arr) 
+        throws IllegalArgumentException
+    {
+        int cols = arr[0].length;
+        for (int i = 1; i < arr.length; i++)
+        {
+            if (arr[i].length != cols)
+            {
+                throw new IllegalArgumentException(
+                    "All rows must have same length");
+            }
+        }
+
+        Javatrix actual = new Javatrix(arr);
+        return actual;
     }
 }
 
