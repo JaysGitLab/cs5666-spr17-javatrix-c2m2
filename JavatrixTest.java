@@ -273,7 +273,47 @@ public class JavatrixTest
         int col = actual.getColumnDimension();
         assertNotSame("should not be same", m, col);
     }
-    
+
+    /**
+     * Test getRowDimension function, valid.
+     */
+    @Test
+    public void getRowDimensionValid()
+    {
+        m = 5;
+        n = 4;
+        Javatrix actual = new Javatrix(m, n);
+        int row = actual.getRowDimension();
+        assertEquals("failure - ints are not equal", m, row);
+    }
+
+    /** 
+     * Test getRowDomension function, invalid.
+     */
+    @Test
+    public void getRowDimensionInvalid()
+    {
+        m = 5;
+        n = 4;
+        Javatrix actual = new Javatrix(m, n);
+        int row = actual.getRowDimension();
+        assertNotSame("should not be same", n, row);
+    }
+
+    /**
+     * Test getArrayCopy function,
+     * returns copy of array, not original.
+     */
+    @Test
+    public void getArrayCopyValid()
+    {
+        m = 5;
+        n = 4;
+        Javatrix actual = new Javatrix(m, n);
+        double[][] matrixCopy = actual.getArrayCopy();
+        assertNotSame("should not be same", actual.getArray(), matrixCopy);
+    }
+
     /**
      * Tear down after unit tests.
      */
