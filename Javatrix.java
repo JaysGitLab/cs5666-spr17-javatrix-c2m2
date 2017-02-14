@@ -153,7 +153,6 @@ public class Javatrix extends java.lang.Object
     public static Javatrix identity(int m, int n)
     {
         Javatrix identityMatrix = new Javatrix(m, n);
-
         for (int i = 0; i < m; i++)
         {
             for (int j = 0; j < n; j++)
@@ -164,7 +163,6 @@ public class Javatrix extends java.lang.Object
                 }
             }
         }
-
         return identityMatrix;
     }
 }
