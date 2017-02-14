@@ -142,6 +142,29 @@ public class Javatrix extends java.lang.Object
     }
 
     /**
+     * Generate an m by n identitiy matrix.
+     *
+     * @param m number of rows
+     * @param n number of columns
+     * @return Javatrix with m by n identity matric
+     */
+    public static Javatrix identity(int m, int n)
+    {
+        Javatrix identityMatrix = new Javatrix(m, n);
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (i == j)
+                {
+                    identityMatrix.matrix[i][j] = 1;
+                }
+            }
+        }
+        return identityMatrix;
+    }
+
+    /**
      * Get column dimension.
      *
      * @return n number of columns

@@ -93,7 +93,7 @@ public class JavatrixTest
         }
 
         Javatrix actual = new Javatrix(matrix, m, n);
-        assertArrayEquals(expected, actual.matrix);
+        assertArrayEquals(expected, actual.getArray());
     }
 
     /**
@@ -122,7 +122,7 @@ public class JavatrixTest
         }
 
         Javatrix actual = new Javatrix(matrix, m, n);
-        assertArrayEquals(expected, actual.matrix);
+        assertArrayEquals(expected, actual.getArray());
     }
          
     /**
@@ -247,6 +247,22 @@ public class JavatrixTest
         matrixA = actualA.getArray();
         matrixB = actualB.getArray();
         assertNotSame("should not be same", matrixA, matrixB);
+    }
+
+    /**
+     * Test identity function.
+     */
+    @Test
+    public void identityMatrix()
+    {
+        m = n = 4;
+        matrix = new double[m][n];
+        matrix[0][0] = 1;
+        matrix[1][1] = 1;
+        matrix[2][2] = 1;
+        matrix[3][3] = 1;
+        Javatrix actual = Javatrix.identity(m, n);
+        assertArrayEquals(matrix, actual.getArray());
     }
 
     /**
