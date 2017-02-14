@@ -27,6 +27,7 @@ public class JavatrixTest
     private double[][] matrix;
     private int m;
     private int n;
+    private Javatrix actual;
 
     /**
      * Test constructor that takes a 2D Array.
@@ -46,7 +47,7 @@ public class JavatrixTest
             }
         }
         Javatrix actual = new Javatrix(matrix);
-        assertArrayEquals(matrix, actual.matrix);
+        assertArrayEquals(matrix, actual.getArray());
     }
 
     /**
@@ -140,7 +141,7 @@ public class JavatrixTest
                 matrix[i][j] = 0;
             }
         }
-        Javatrix actual = new Javatrix(m, n);
+        actual = new Javatrix(m, n);
         assertArrayEquals("failure - double arrays not same", 
             matrix, actual.getArray());
     }
@@ -153,7 +154,7 @@ public class JavatrixTest
     {
         m = 5;
         n = 4;
-        Javatrix actual = new Javatrix(m, n);
+        actual = new Javatrix(m, n);
         assertNotNull("should not be null", actual);
     }
 
@@ -174,7 +175,7 @@ public class JavatrixTest
                 matrix[i][j] = s;
             }
         }
-        Javatrix actual = new Javatrix(m, n, s);
+        actual = new Javatrix(m, n, s);
         assertArrayEquals("failure - double arrays not same",
             matrix, actual.getArray());
     }
@@ -188,7 +189,7 @@ public class JavatrixTest
         m = 5;
         n = 4;
         double s = 2.2;
-        Javatrix actual = new Javatrix(m, n, s);
+        actual = new Javatrix(m, n, s);
         assertNotNull("should not be null", actual);
     }
 
@@ -201,7 +202,7 @@ public class JavatrixTest
         m = 5;
         n = 4;
         double s = 2.2;
-        Javatrix actual = new Javatrix(m, n, s);
+        actual = new Javatrix(m, n, s);
         assertEquals("failure - doubles are not equal", s, actual.get(1, 2), 0);
     }
     
@@ -213,7 +214,7 @@ public class JavatrixTest
     {
         m = 5;
         n = 4;
-        Javatrix actual = new Javatrix(m, n);
+        actual = new Javatrix(m, n);
         double s = actual.get(6, 6);
     }
 
@@ -225,7 +226,7 @@ public class JavatrixTest
     {
         m = 5;
         n = 4;
-        Javatrix actual = new Javatrix(m, n);
+        actual = new Javatrix(m, n);
         double[][] marix = null; 
         matrix = actual.getArray();
         assertSame("should be same", matrix, actual.getArray());
@@ -256,7 +257,7 @@ public class JavatrixTest
     {
         m = 5;
         n = 4;
-        Javatrix actual = new Javatrix(m, n);
+        actual = new Javatrix(m, n);
         int col = actual.getColumnDimension();
         assertEquals("failure - ints are not equal", n, col);
     }
@@ -269,7 +270,7 @@ public class JavatrixTest
     {
         m = 5;
         n = 4;
-        Javatrix actual = new Javatrix(m, n);
+        actual = new Javatrix(m, n);
         int col = actual.getColumnDimension();
         assertNotSame("should not be same", m, col);
     }
@@ -282,7 +283,7 @@ public class JavatrixTest
     {
         m = 5;
         n = 4;
-        Javatrix actual = new Javatrix(m, n);
+        actual = new Javatrix(m, n);
         int row = actual.getRowDimension();
         assertEquals("failure - ints are not equal", m, row);
     }
@@ -295,7 +296,7 @@ public class JavatrixTest
     {
         m = 5;
         n = 4;
-        Javatrix actual = new Javatrix(m, n);
+        actual = new Javatrix(m, n);
         int row = actual.getRowDimension();
         assertNotSame("should not be same", n, row);
     }
@@ -309,10 +310,64 @@ public class JavatrixTest
     {
         m = 5;
         n = 4;
-        Javatrix actual = new Javatrix(m, n);
+        actual = new Javatrix(m, n);
         double[][] matrixCopy = actual.getArrayCopy();
         assertNotSame("should not be same", actual.getArray(), matrixCopy);
     }
+
+    /**
+     * Test set function.
+     */
+    @Test
+    public void setValid()
+    {
+        m = 5;
+        n = 4;
+        actual = new Javatrix(m, n);
+        actual.set(1, 2, 2.2);
+        assertEquals("failure - doubles are not equal", 
+            2.2, actual.get(1, 2), 0);
+    }
+
+    /**
+     * Test set function, exception thrown.
+     */
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void setInvalid()
+    {
+        m = 5;
+        n = 4;
+        actual = new Javatrix(m, n);
+        actual.set(6, 5, 2.2);
+    }
+
+    /**
+     * Test constructWithCopy function.
+     */
+    @Test
+    public void constructWithCopyValid()
+    {
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        actual = Javatrix.constructWithCopy(matrix);
+        assertArrayEquals("failure - double arrays are not same", 
+            matrix, actual.getArray());
+    }
+
+    /**
+     * Test constructWithCopy function, exception thrown.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void constructWithCopyException()
+    {
+        double[] a = {1.1, 2.2, 3.3};
+        double[] b = {4.4, 5.5};
+        matrix = new double[2][];
+        matrix[0] = a;
+        matrix[1] = b;
+        actual = Javatrix.constructWithCopy(matrix);
+    } 
 
     /**
      * Tear down after unit tests.
@@ -323,5 +378,6 @@ public class JavatrixTest
         matrix = null;
         m = 0;
         n = 0;
+        actual = null;
     }
 }
