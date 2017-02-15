@@ -256,9 +256,10 @@ public class Javatrix extends java.lang.Object
         Javatrix randomMatrix = new Javatrix(m, n);
         for (int i = 0; i < m; i++)
         {
+            double rand;
             for (int j = 0; j < n; j++)
             {
-                double rand = java.lang.Math.random();
+                rand = java.lang.Math.random();
                 randomMatrix.set(i, j, rand);
             }
         }
