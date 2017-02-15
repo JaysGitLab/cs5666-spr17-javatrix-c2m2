@@ -384,6 +384,15 @@ public class JavatrixTest
         matrix[1] = b;
         actual = Javatrix.constructWithCopy(matrix);
     } 
+    /**
+     * Test random function.
+     */
+    @Test
+    public void testRandom()
+    {
+        Javatrix random = Javatrix.random(5, 6);
+        assertNotNull(random);
+    }
 
     /**
      * Tear down after unit tests.

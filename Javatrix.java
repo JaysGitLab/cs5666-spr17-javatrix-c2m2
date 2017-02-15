@@ -146,7 +146,7 @@ public class Javatrix extends java.lang.Object
      *
      * @param m number of rows
      * @param n number of columns
-     * @return Javatrix with m by n identity matric
+     * @return Javatrix with m by n identity matrix
      */
     public static Javatrix identity(int m, int n)
     {
@@ -243,5 +243,26 @@ public class Javatrix extends java.lang.Object
         Javatrix actual = new Javatrix(arr);
         return actual;
     }
-}
 
+    /**
+     * Generate a matrix with random elements.
+     *
+     * @param m number of rows
+     * @param n number of columns
+     * @return a Javatrix object with matrix of random elements
+     */
+    public static Javatrix random(int m, int n)
+    {
+        Javatrix randomMatrix = new Javatrix(m, n);
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                double rand = java.lang.Math.random();
+                randomMatrix.set(i, j, rand);
+            }
+        }
+        return randomMatrix;
+    } 
+}
+ 
