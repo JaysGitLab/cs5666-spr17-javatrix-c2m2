@@ -243,5 +243,16 @@ public class Javatrix extends java.lang.Object
         Javatrix actual = new Javatrix(arr);
         return actual;
     }
+
+    /**
+     * Construct a matrix C = A - B.
+     *
+     * @param B another matrix
+     * @return A - B
+     */
+    public Javatrix minus(Javatrix B)
+    {
+
+    }
 }
 
