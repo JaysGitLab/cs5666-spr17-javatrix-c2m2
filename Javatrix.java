@@ -291,6 +291,33 @@ public class Javatrix extends java.lang.Object
             }
         }
         return randomMatrix;
-    } 
+    }
+    
+    /**
+     * Construct a matrix C = A \ B.
+     *
+     * @param actualB another matrix
+     * @return A \ B
+     */
+    public Javatrix arrayLeftDivide(Javatrix actualB)
+    {
+        m = actualB.getRowDimension();
+        n = actualB.getColumnDimension();
+        Javatrix actual = new Javatrix(m, n);
+        double a;
+        double b;
+        double c;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = actualB.get(i, j);
+                c = b / a;
+                actual.set(i, j, c);
+            }
+        }
+        return actual;
+    }    
 }
  
