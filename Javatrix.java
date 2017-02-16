@@ -27,7 +27,7 @@ public class Javatrix extends java.lang.Object
      *
      * @param m number of rows
      * @param vals stored by columns
-     * @throws IllegalArgmentException if length of 
+     * @throws IllegalArgumentException if length of 
      * val is not a multiple of m
      */
     public Javatrix(double[] vals, int m) throws IllegalArgumentException
