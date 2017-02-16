@@ -25,9 +25,45 @@ import static org.junit.Assert.assertNotSame;
 public class JavatrixTest
 {
     private double[][] matrix;
+    private double[] arrayOne;
     private int m;
     private int n;
     private Javatrix actual;
+
+
+    /**
+     * Test constructor of 1D array that will equate to a 2x3 matrix.
+     */
+
+    @Test
+    public void matrixArray1D()
+    {
+        m = 2;
+        n = 3;
+        arrayOne = new double[]{1,2,3,4,5,6};
+        matrix = new double[2][3];
+        matrix[0][0] = arrayOne[0];
+        matrix[1][0] = arrayOne[1];
+        matrix[0][1] = arrayOne[2];
+        matrix[1][1] = arrayOne[3];
+        matrix[0][2] = arrayOne[4];
+        matrix[1][2] = arrayOne[5];
+        actual = new Javatrix(arrayOne, m);
+        assertArrayEquals(matrix, actual.getArray());
+    }
+
+    /**
+     * Test constructor of 1D array that thoughs exception for too short.
+     */
+
+    @Test(expected = IllegalArgumentException.class)
+    public void matrixArray1DException()
+    {
+        m = 2;
+        arrayOne = new double[]{1,2,3,4,5};
+        actual = new Javatrix(arrayOne, m);
+      
+    }
 
     /**
      * Test constructor that takes a 2D Array.

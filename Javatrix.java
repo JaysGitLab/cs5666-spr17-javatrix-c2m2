@@ -22,6 +22,37 @@ public class Javatrix extends java.lang.Object
     private int m;
     private int n;
 
+     /**
+     * Constructor 1D array.
+     * @param m number of rows
+     * @param vals stored by columns
+     */
+    public Javatrix(double[] vals, int m)throws IllegalArgumentException
+    {
+        int rows = m;
+        int columns = (vals.length) / m;
+        int reman = (vals.length) % m;
+
+        if (reman != 0)
+        {
+            String ex = "Array length must me a multiple of m.";
+            throw new IllegalArgumentException(ex);
+        }
+        else 
+        {
+            matrix = new double[rows][columns];
+            int count = 0;
+            for(int i = 0; i < columns; i++)
+            {
+                for(int j = 0; j < rows; j++)
+                {
+                    matrix[j][i]=vals[count];
+                    count++;
+                }
+            }
+        }
+    }
+
     /**
      * Construct a matrix from a 2D array.
      *
