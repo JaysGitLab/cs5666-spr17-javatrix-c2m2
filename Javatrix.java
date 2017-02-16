@@ -270,6 +270,32 @@ public class Javatrix extends java.lang.Object
         }
         return actual;
     }
+   
+    /**
+     * Return calling matrix A = A + B.
+     *
+     * @param actualB calling matrix
+     * @return A + B
+     */
+    public Javatrix plusEquals(Javatrix actualB)
+    {
+        m = actualB.getRowDimension();
+        n = actualB.getColumnDimension();
+        double a;
+        double b;
+        double c;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = actualB.get(i, j);
+                c = a + b;
+                this.set(i, j, c);
+            }
+        }
+        return this;
+    }
 
     /**
      * Generate a matrix with random elements.
