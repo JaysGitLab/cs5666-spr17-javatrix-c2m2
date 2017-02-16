@@ -34,14 +34,13 @@ public class JavatrixTest
     /**
      * Test constructor of 1D array that will equate to a 2x3 matrix.
      */
-
     @Test
     public void matrixArray1D()
     {
         m = 2;
         n = 3;
-        arrayOne = new double[]{1,2,3,4,5,6};
-        matrix = new double[2][3];
+        arrayOne = new double[]{1, 2, 3, 4, 5, 6};
+        matrix = new double[m][n];
         matrix[0][0] = arrayOne[0];
         matrix[1][0] = arrayOne[1];
         matrix[0][1] = arrayOne[2];
@@ -55,14 +54,12 @@ public class JavatrixTest
     /**
      * Test constructor of 1D array that thoughs exception for too short.
      */
-
     @Test(expected = IllegalArgumentException.class)
     public void matrixArray1DException()
     {
         m = 2;
-        arrayOne = new double[]{1,2,3,4,5};
-        actual = new Javatrix(arrayOne, m);
-      
+        arrayOne = new double[]{1, 2, 3, 4, 5};
+        actual = new Javatrix(arrayOne, m);     
     }
 
     /**

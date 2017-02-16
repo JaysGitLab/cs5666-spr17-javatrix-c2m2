@@ -24,10 +24,13 @@ public class Javatrix extends java.lang.Object
 
      /**
      * Constructor 1D array.
+     *
      * @param m number of rows
      * @param vals stored by columns
+     * @throws IllegalArgmentException if length of 
+     * val is not a multiple of m
      */
-    public Javatrix(double[] vals, int m)throws IllegalArgumentException
+    public Javatrix(double[] vals, int m) throws IllegalArgumentException
     {
         int rows = m;
         int columns = (vals.length) / m;
@@ -38,17 +41,14 @@ public class Javatrix extends java.lang.Object
             String ex = "Array length must me a multiple of m.";
             throw new IllegalArgumentException(ex);
         }
-        else 
+        matrix = new double[rows][columns];
+        int count = 0;
+        for (int j = 0; j < columns; j++)
         {
-            matrix = new double[rows][columns];
-            int count = 0;
-            for(int i = 0; i < columns; i++)
+            for (int i = 0; i < rows; i++)
             {
-                for(int j = 0; j < rows; j++)
-                {
-                    matrix[j][i]=vals[count];
-                    count++;
-                }
+                matrix[i][j] = vals[count];
+                count++;
             }
         }
     }
