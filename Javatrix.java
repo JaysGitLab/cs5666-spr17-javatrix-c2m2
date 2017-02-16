@@ -245,6 +245,33 @@ public class Javatrix extends java.lang.Object
     }
 
     /**
+     * Construct a matrix C = A + B.
+     *
+     * @param actualB another matrix
+     * @return A + B
+     */
+    public Javatrix plus(Javatrix actualB)
+    {
+        m = actualB.getRowDimension();
+        n = actualB.getColumnDimension();
+        Javatrix actual = new Javatrix(m, n);
+        double a;
+        double b;
+        double c;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = actualB.get(i, j);
+                c = a + b;
+                actual.set(i, j, c);
+            }
+        }
+        return actual;
+    }
+
+    /**
      * Generate a matrix with random elements.
      *
      * @param m number of rows
