@@ -349,6 +349,30 @@ public class Javatrix extends java.lang.Object
             }
         }
         return randomMatrix;
-    } 
+    }
+
+    /**
+     * Construct a matrix A = A * s.
+     *
+     * @return A * s
+     */
+    public Javatrix times(double scaler)
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double a;
+        double b;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = a * scaler;
+                this.set(i, j, b);
+            }
+        }
+        return this;
+    }
+ 
 }
  
