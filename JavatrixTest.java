@@ -600,6 +600,36 @@ public class JavatrixTest
     }
 
     /**
+     * Test minus function, returns different object.
+     */
+    @Test
+    public void timesScalarNewObj()
+    {
+       m = 2;
+       n = 3;
+       double scalar = 3.3;
+       double[] a = {1, 2, 3};
+       double[] b = {4, 5, 6};
+       matrix = new double[m][n];
+       matrix[0] = a;
+       matrix[1] = b;
+        
+       double[][] matrixC = new double[m][n];
+       for (int i = 0; i < m; i++)
+       {
+           for (int j = 0; j < n; j++)
+           {
+                matrixB[i][j] = matrix[i][j] * scalar;
+           }
+       }
+       
+       actual = new Javatrix(matrix);
+       Javatrix actualB = new Javatrix(matrixB);
+       Javatrix actualC = actual.times(actualB);
+       assertNotSame("should not be same", actual, actualC);
+    }
+
+    /**
      * Tear down after unit tests.
      */
     @After
