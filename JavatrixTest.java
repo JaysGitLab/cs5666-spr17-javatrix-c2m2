@@ -588,7 +588,7 @@ public class JavatrixTest
         {
             for (int j = 0; j < n; j++)
             {
-                matrix[i][j] *= scaler;
+                matrix[i][j] = matrix[i][j] * scaler;
             }
         }
 
