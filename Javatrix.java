@@ -354,12 +354,14 @@ public class Javatrix extends java.lang.Object
     /**
      * Construct a matrix A = A * s.
      *
+     * @param scalar multiplier
      * @return A * s
      */
-    public Javatrix times(double scaler)
+    public Javatrix times(double scalar)
     {
         m = this.getRowDimension();
         n = this.getColumnDimension();
+        Javatrix actual = new Javatrix(m, n);
         double a;
         double b;
         for (int i = 0; i < m; i++)
@@ -367,12 +369,11 @@ public class Javatrix extends java.lang.Object
             for (int j = 0; j < n; j++)
             {
                 a = this.get(i, j);
-                b = a * scaler;
-                this.set(i, j, b);
+                b = a * scalar;
+                actual.set(i, j, b);
             }
         }
-        return this;
+        return actual;
     }
- 
 }
  
