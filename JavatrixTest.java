@@ -499,6 +499,77 @@ public class JavatrixTest
     }
 
     /** 
+     * Test leftDivide function, valid values.
+     */
+    @Test
+    public void leftDivideValid()
+    {
+        m = 2;
+        n = 3;
+        double[] a = {1.1, 2.2, 3.3};
+        double[] b = {1.1, 1.1, 2.2};
+        matrix = new double[m][n];
+        matrix[0] = a;
+        matrix[1] = b;
+       
+        double[] c = {2.2, 4.4, 6.6};
+        double[] d = {3.3, 1.1, 8.8};
+        double[][] matrixB = new double[m][n];
+        matrixB[0] = c;
+        matrixB[1] = d;
+        
+        double[][] matrixC = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrixC[i][j] = matrixB[i][j] / matrix[i][j];
+            }
+        }
+        
+        actual = new Javatrix(matrix);
+        Javatrix actualB = new Javatrix(matrixB);
+        Javatrix actualC = actual.arrayLeftDivide(actualB);
+	assertArrayEquals("failure - double arrays are not same",
+            matrixC, actualC.getArray());
+    }
+
+    /**
+     * Test leftDivide function, returns different object.
+     */
+    @Test
+    public void leftDivideNewObj()
+    {
+        m = 2;
+        n = 3;
+        double[] a = {1.1, 2.2, 3.3};
+        double[] b = {1.1, 1.1, 2.2};
+        matrix = new double[m][n];
+        matrix[0] = a;
+        matrix[1] = b;
+       
+        double[] c = {2.2, 4.4, 6.6};
+        double[] d = {3.3, 1.1, 8.8};
+	double[][] matrixB = new double[m][n];
+        matrixB[0] = c;
+        matrixB[1] = d;
+        
+        double[][] matrixC = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrixC[i][j] = matrixB[i][j] / matrix[i][j];
+            }
+        }
+       
+        actual = new Javatrix(matrix);
+        Javatrix actualB = new Javatrix(matrixB);
+        Javatrix actualC = actual.arrayLeftDivide(actualB);
+	assertNotSame("should not be same", actual, actualC);
+    }
+
+    /**
      * Test minus function, valid values.
      */
     @Test
