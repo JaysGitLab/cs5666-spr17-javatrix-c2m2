@@ -497,7 +497,7 @@ public class JavatrixTest
         Javatrix actualC = actual.plus(actualB);
         assertNotSame("should not be same", actual, actualC);
     }
-   
+
     /**
      * Test plusEquals function, valid values.
      */
@@ -592,7 +592,7 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = new Javatrix(matrixB);
         Javatrix actualC = actual.arrayLeftDivide(actualB);
-        assertArrayEquals("failure - double arrays are not same",
+	assertArrayEquals("failure - double arrays are not same",
             matrixC, actualC.getArray());
     }
 
@@ -612,7 +612,7 @@ public class JavatrixTest
        
         double[] c = {2.2, 4.4, 6.6};
         double[] d = {3.3, 1.1, 8.8};
-        double[][] matrixB = new double[m][n];
+	double[][] matrixB = new double[m][n];
         matrixB[0] = c;
         matrixB[1] = d;
         
@@ -628,10 +628,10 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = new Javatrix(matrixB);
         Javatrix actualC = actual.arrayLeftDivide(actualB);
-        assertNotSame("should not be same", actual, actualC);
+	assertNotSame("should not be same", actual, actualC);
     }
-
-    /** 
+	
+    /**
      * Test minus function, valid values.
      */
     @Test
@@ -763,7 +763,7 @@ public class JavatrixTest
         Javatrix actualC = actual.minusEquals(actualB);
         assertSame("should be same object", actual, actualC);
     }
-   
+
     /**
      * Test rightDivide function, valid values.
      */
@@ -906,3 +906,4 @@ public class JavatrixTest
         actual = null;
     }
 }
+
