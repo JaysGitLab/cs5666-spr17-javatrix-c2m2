@@ -22,6 +22,37 @@ public class Javatrix extends java.lang.Object
     private int m;
     private int n;
 
+     /**
+     * Constructor 1D array.
+     *
+     * @param m number of rows
+     * @param vals stored by columns
+     * @throws IllegalArgumentException if length of 
+     * val is not a multiple of m
+     */
+    public Javatrix(double[] vals, int m) throws IllegalArgumentException
+    {
+        int rows = m;
+        int columns = (vals.length) / m;
+        int reman = (vals.length) % m;
+
+        if (reman != 0)
+        {
+            String ex = "Array length must me a multiple of m.";
+            throw new IllegalArgumentException(ex);
+        }
+        matrix = new double[rows][columns];
+        int count = 0;
+        for (int j = 0; j < columns; j++)
+        {
+            for (int i = 0; i < rows; i++)
+            {
+                matrix[i][j] = vals[count];
+                count++;
+            }
+        }
+    }
+
     /**
      * Construct a matrix from a 2D array.
      *
@@ -241,6 +272,33 @@ public class Javatrix extends java.lang.Object
         }
 
         Javatrix actual = new Javatrix(arr);
+        return actual;
+    }
+
+    /**
+     * Construct a matrix C = A - B.
+     *
+     * @param actualB another matrix
+     * @return A - B
+     */
+    public Javatrix minus(Javatrix actualB)
+    {
+        m = actualB.getRowDimension();
+        n = actualB.getColumnDimension();
+        Javatrix actual = new Javatrix(m, n);
+        double a;
+        double b;
+        double c;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = actualB.get(i, j);
+                c = a - b;
+                actual.set(i, j, c);
+            }
+        }
         return actual;
     }
 
