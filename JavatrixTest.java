@@ -612,7 +612,7 @@ public class JavatrixTest
        
         double[] c = {2.2, 4.4, 6.6};
         double[] d = {3.3, 1.1, 8.8};
-	double[][] matrixB = new double[m][n];
+        double[][] matrixB = new double[m][n];
         matrixB[0] = c;
         matrixB[1] = d;
         
@@ -892,6 +892,33 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = actual.times(scalar);
         assertNotSame("should not be same", actual, actualB);
+    }
+
+    /**
+     * Test copy function, valid.
+     */
+    @Test
+    public void copyValid()
+    {
+        m = 5;
+        n = 4;
+        actual = Javatrix.random(m, n);
+        Javatrix copy = actual.copy();
+        assertArrayEquals("failure - double arrays not same", 
+            actual.getArray(), copy.getArray());
+    }
+
+    /**
+     * Test copy function, new object.
+     */
+    @Test
+    public void copyNewObj()
+    {
+        m = 5;
+        n = 4;
+        actual = Javatrix.random(m, n);
+        Javatrix copy = actual.copy();
+        assertNotSame("should not be same", actual, copy);
     }
 
     /**
