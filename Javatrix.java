@@ -302,6 +302,32 @@ public class Javatrix extends java.lang.Object
         return actual;
     }
 
+	/**
+     * Return calling matrix A = A - B.
+     *
+     * @param actualB calling matrix
+     * @return A - B
+     */
+    public Javatrix minusEquals(Javatrix actualB)
+    {
+        m = actualB.getRowDimension();
+        n = actualB.getColumnDimension();
+        double a;
+        double b;
+        double c;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = actualB.get(i, j);
+                c = a - b;
+                this.set(i, j, c);
+            }
+        }
+        return this;
+    }
+	
     /**
      * Construct a matrix C = A + B.
      *
@@ -328,7 +354,7 @@ public class Javatrix extends java.lang.Object
         }
         return actual;
     }
-   
+
     /**
      * Return calling matrix A = A + B.
      *
@@ -356,32 +382,6 @@ public class Javatrix extends java.lang.Object
     }
 
     /**
-     * Return calling matrix A = A - B.
-     *
-     * @param actualB calling matrix
-     * @return A - B
-     */
-    public Javatrix minusEquals(Javatrix actualB)
-    {
-        m = actualB.getRowDimension();
-        n = actualB.getColumnDimension();
-        double a;
-        double b;
-        double c;
-        for (int i = 0; i < m; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                a = this.get(i, j);
-                b = actualB.get(i, j);
-                c = a - b;
-                this.set(i, j, c);
-            }
-        }
-        return this;
-    }
-    
-    /**
      * Generate a matrix with random elements.
      *
      * @param m number of rows
@@ -402,14 +402,41 @@ public class Javatrix extends java.lang.Object
         }
         return randomMatrix;
     }
-    
+	
+    /** 
+     * Construct a matrix C = A \ B. 
+     * 
+     * @param actualB another matrix 
+     * @return A \ B 
+     */ 
+    public Javatrix arrayLeftDivide(Javatrix actualB) 
+    { 
+        m = actualB.getRowDimension(); 
+        n = actualB.getColumnDimension(); 
+        Javatrix actual = new Javatrix(m, n); 
+        double a; 
+        double b; 
+        double c; 
+        for (int i = 0; i < m; i++) 
+        { 
+            for (int j = 0; j < n; j++) 
+            { 
+                a = this.get(i, j); 
+                b = actualB.get(i, j); 
+                c = b / a; 
+                actual.set(i, j, c); 
+            } 
+        } 
+        return actual; 
+    }     
+
     /**
-     * Construct a matrix C = A \ B.
+     * Construct a matrix C = A / B.
      *
      * @param actualB another matrix
-     * @return A \ B
+     * @return A / B
      */
-    public Javatrix arrayLeftDivide(Javatrix actualB)
+    public Javatrix arrayRightDivide(Javatrix actualB)
     {
         m = actualB.getRowDimension();
         n = actualB.getColumnDimension();
@@ -423,11 +450,11 @@ public class Javatrix extends java.lang.Object
             {
                 a = this.get(i, j);
                 b = actualB.get(i, j);
-                c = b / a;
-                actual.set(i, j, c);
-            }
-        }
-        return actual;
-    }    
+                c = a / b;
+                actual.set(i, j, c); 
+            } 
+        } 
+        return actual; 
+    }
 }
  
