@@ -570,10 +570,10 @@ public class JavatrixTest
     }
 
     /**
-     * Test timesScaler function, valid values.
+     * Test timesEqualScaler function, valid values.
      */
     @Test
-    public void timesScalerValid()
+    public void timesEqualScalerValid()
     {
         m = 2;
         n = 3;
@@ -592,7 +592,8 @@ public class JavatrixTest
             }
         }
 
-        actual = actual.times(scaler);
+	actual = new Javatrix(matrix);
+        actual = actual.timesEqual(scaler);
         assertArrayEquals("failure - double arrays are not same",
             matrix, actual.getArray());
     }

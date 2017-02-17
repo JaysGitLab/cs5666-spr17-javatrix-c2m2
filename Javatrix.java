@@ -356,7 +356,7 @@ public class Javatrix extends java.lang.Object
      *
      * @return A * s
      */
-    public Javatrix times(double scaler)
+    public Javatrix timesEqual(double scaler)
     {
         m = this.getRowDimension();
         n = this.getColumnDimension();
