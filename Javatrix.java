@@ -91,16 +91,12 @@ public class Javatrix extends java.lang.Object
         this.m = x;
         this.n = y;
         matrix = new double[m][n];
-        for (int i = 0; i < arr.length; i++)
+        for (int i = 0; i < m; i++)
         {
-            for (int j = 0; j < arr[0].length; j++)
+            for (int j = 0; j < n; j++)
             {
-                // If index not out of range for arr.
-                if (i < m && j < n)
-                {
-                    matrix[i][j] = arr[i][j]; 
-                }
-            }
+                matrix[i][j] = arr[i][j]; 
+            }           
         }
     }
 
