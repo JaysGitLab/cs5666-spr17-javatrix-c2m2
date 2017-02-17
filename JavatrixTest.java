@@ -465,6 +465,236 @@ public class JavatrixTest
         assertNotSame("should not be same", actual, actualC);
     }
 
+	/** 
+     * Test plusEquals function, valid values. 
+     */ 
+    @Test 
+    public void plusEqualsValid() 
+    { 
+        m = 2; 
+        n = 3; 
+        double[] a = {1.1, 2.2, 3.3}; 
+        double[] b = {4.4, 5.5, 6.6}; 
+        matrix = new double[m][n]; 
+        matrix[0] = a; 
+        matrix[1] = b;  
+ 
+        double[] c = {1.1, 1.2, 1.3}; 
+        double[] d = {1.4, 1.5, 1.6}; 
+        double[][] matrixB = new double[m][n]; 
+        matrixB[0] = c; 
+        matrixB[1] = d;  
+
+		actual = new Javatrix(matrix); 
+        Javatrix actualB = new Javatrix(matrixB);  
+ 
+        for (int i = 0; i < m; i++) 
+        { 
+            for (int j = 0; j < n; j++) 
+            { 
+                matrix[i][j] = matrix[i][j] + matrixB[i][j]; 
+            } 
+        }  
+ 
+        actual = actual.plusEquals(actualB); 
+        assertArrayEquals("failure - double arrays are not same", 
+            matrix, actual.getArray()); 
+    } 
+	 
+    /** 
+     * Test plusEquals function, returns same object. 
+     */ 
+    @Test 
+    public void plusEqualsSameObj() 
+    { 
+        m = 2; 
+        n = 3; 
+        double[] a = {1.1, 2.2, 3.3}; 
+        double[] b = {4.4, 5.5, 6.6}; 
+        matrix = new double[m][n]; 
+        matrix[0] = a; 
+        matrix[1] = b;  
+
+        double[] c = {1.1, 1.2, 1.3}; 
+        double[] d = {1.4, 1.5, 1.6}; 
+        double[][] matrixB = new double[m][n]; 
+        matrixB[0] = c; 
+        matrixB[1] = d; 
+ 
+        actual = new Javatrix(matrix); 
+        Javatrix actualB = new Javatrix(matrixB); 
+        Javatrix actualC = actual.plusEquals(actualB); 
+        assertSame("should be same object", actual, actualC); 
+    } 
+
+    /** 
+     * Test minus function, returns different object. 
+     */ 
+    @Test 
+    public void minusNewObj() 
+    { 
+        m = 2; 
+        n = 3; 
+        double[] a = {1.1, 2.2, 3.3}; 
+        double[] b = {4.4, 5.5, 6.6}; 
+        matrix = new double[m][n]; 
+        matrix[0] = a; 
+        matrix[1] = b; 
+          
+        double[] c = {1.1, 1.2, 1.3}; 
+        double[] d = {1.4, 1.5, 1.6}; 
+        double[][] matrixB = new double[m][n]; 
+        matrixB[0] = c; 
+        matrixB[1] = d; 
+          
+        double[][] matrixC = new double[m][n]; 
+        for (int i = 0; i < m; i++) 
+        { 
+            for (int j = 0; j < n; j++) 
+            { 
+                matrixC[i][j] = matrix[i][j] - matrixB[i][j]; 
+            } 
+        } 
+        
+        actual = new Javatrix(matrix); 
+        Javatrix actualB = new Javatrix(matrixB); 
+        Javatrix actualC = actual.minus(actualB); 
+        assertNotSame("should not be same", actual, actualC); 
+    } 
+
+    /** 
+     * Test minusEquals function, valid values. 
+     */ 
+    @Test 
+    public void minusEqualsValid() 
+    { 
+        m = 2; 
+        n = 3; 
+        double[] a = {1.1, 2.2, 3.3}; 
+        double[] b = {4.4, 5.5, 6.6}; 
+        matrix = new double[m][n]; 
+        matrix[0] = a; 
+        matrix[1] = b; 
+
+        double[] c = {1.1, 1.2, 1.3}; 
+        double[] d = {1.4, 1.5, 1.6}; 
+        double[][] matrixB = new double[m][n]; 
+        matrixB[0] = c; 
+        matrixB[1] = d;  
+ 
+        actual = new Javatrix(matrix); 
+        Javatrix actualB = new Javatrix(matrixB);  
+ 
+        for (int i = 0; i < m; i++) 
+        { 
+            for (int j = 0; j < n; j++) 
+            { 
+                matrix[i][j] = matrix[i][j] - matrixB[i][j]; 
+            } 
+        }  
+
+        actual = actual.minusEquals(actualB); 
+        assertArrayEquals("failure - double arrays are not same", 
+            matrix, actual.getArray()); 
+    } 
+      
+    /** 
+     * Test minusEquals function, returns same object. 
+     */ 
+    @Test 
+    public void minusEqualsSameObj() 
+    { 
+        m = 2; 
+        n = 3; 
+        double[] a = {1.1, 2.2, 3.3}; 
+        double[] b = {4.4, 5.5, 6.6}; 
+        matrix = new double[m][n]; 
+        matrix[0] = a; 
+        matrix[1] = b; 
+
+		double[] c = {1.1, 1.2, 1.3}; 
+        double[] d = {1.4, 1.5, 1.6}; 
+        double[][] matrixB = new double[m][n]; 
+        matrixB[0] = c; 
+        matrixB[1] = d; 
+ 
+        actual = new Javatrix(matrix); 
+        Javatrix actualB = new Javatrix(matrixB); 
+        Javatrix actualC = actual.minusEquals(actualB); 
+        assertSame("should be same object", actual, actualC); 
+    } 
+
+	/**  
+     * Test leftDivide function, valid values. 
+     */ 
+    @Test 
+    public void leftDivideValid() 
+    { 
+        m = 2; 
+        n = 3; 
+        double[] a = {1.1, 2.2, 3.3}; 
+        double[] b = {1.1, 1.1, 2.2}; 
+        matrix = new double[m][n]; 
+        matrix[0] = a; 
+        matrix[1] = b; 
+         
+        double[] c = {2.2, 4.4, 6.6}; 
+        double[] d = {3.3, 1.1, 8.8}; 
+        double[][] matrixB = new double[m][n]; 
+        matrixB[0] = c; 
+        matrixB[1] = d; 
+          
+        double[][] matrixC = new double[m][n]; 
+        for (int i = 0; i < m; i++) 
+        { 
+            for (int j = 0; j < n; j++) 
+            { 
+                matrixC[i][j] = matrixB[i][j] / matrix[i][j]; 
+            } 
+        } 
+          
+        actual = new Javatrix(matrix); 
+        Javatrix actualB = new Javatrix(matrixB); 
+        Javatrix actualC = actual.arrayLeftDivide(actualB); 
+		assertArrayEquals("failure - double arrays are not same", 
+            matrixC, actualC.getArray()); 
+    }  
+ 
+    /** 
+     * Test leftDivide function, returns different object. 
+     */ 
+    @Test 
+    public void leftDivideNewObj() 
+    { 
+        m = 2; 
+        n = 3; 
+        double[] a = {1.1, 2.2, 3.3}; 
+        double[] b = {1.1, 1.1, 2.2}; 
+        matrix = new double[m][n]; 
+        matrix[0] = a; 
+        matrix[1] = b; 
+         
+        double[] c = {2.2, 4.4, 6.6}; 
+        double[] d = {3.3, 1.1, 8.8}; 
+		double[][] matrixB = new double[m][n]; 
+        matrixB[0] = c; 
+        matrixB[1] = d; 
+          
+        double[][] matrixC = new double[m][n]; 
+        for (int i = 0; i < m; i++) 
+        { 
+            for (int j = 0; j < n; j++) 
+           { 
+               matrixC[i][j] = matrixB[i][j] / matrix[i][j]; 
+           } 
+        } 
+         
+        actual = new Javatrix(matrix); 
+        Javatrix actualB = new Javatrix(matrixB); 
+        Javatrix actualC = actual.arrayLeftDivide(actualB); 
+		assertNotSame("should not be same", actual, actualC); 
+    } 
+	 
     /**
      * Test rightDivide function, valid values.
      */
