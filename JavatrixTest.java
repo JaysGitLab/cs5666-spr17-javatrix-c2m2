@@ -880,12 +880,13 @@ public class JavatrixTest
                 matrix[i][j] = java.lang.Math.random();
             }
         }
-        int[] r  = {0,0,1,2};
-        int[] c = {0,1,2,2};
+        int[] r  = {0, 0, 1, 2};
+        int[] c = {0, 1, 2, 2};
         actual = new Javatrix(matrix);
         actual = actual.getMatrix(r, c);
         matrix = new double[4][4];
-        int row, col;
+        int row;
+        int col;
         for (int i = 0; i < 4; i++)
         {
             row = r[i];
@@ -903,8 +904,8 @@ public class JavatrixTest
         m = 4;
         n = 5;
         actual = new Javatrix(m, n);
-        int[]r = {0,0,1,1,2,2};
-        int[]c = {0,1,2,3,4,5};
+        int[]r = {0, 0, 1, 1, 2, 2};
+        int[]c = {0, 1, 2, 3, 4, 5};
         actual = actual.getMatrix(r, c);
     }
 

@@ -492,7 +492,8 @@ public class Javatrix extends java.lang.Object
     {
         m = r.length;
         n = c.length;
-        int row, col;
+        int row;
+        int col;
         if (m > this.getRowDimension() || n > this.getColumnDimension())
         {
             String ex = "Submatrix must have dimensions "
@@ -504,7 +505,7 @@ public class Javatrix extends java.lang.Object
         {
             row = r[i];
             col = c[i];
-            subMatrix.getArray()[row][col] = this.get(row, col);
+            subMatrix.matrix[row][col] = this.get(row, col);
         }
         return subMatrix;
     }
