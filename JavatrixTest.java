@@ -866,6 +866,71 @@ public class JavatrixTest
     }
 
     /**
+     * Test transpose function, valid row dimension.
+     */
+    @Test
+    public void transposeValidRows()
+    {
+        m = 3;
+        n = 2;
+        matrix = new double[m][n];
+        actual = new Javatrix(m, n);
+        Javatrix transposed = actual.transpose();
+        assertEquals("failure - invalid row dimension", 
+            actual.getColumnDimension(), transposed.getRowDimension());
+    }
+    
+    /**
+     * Test transpose function, valid column dimension.
+     */
+    @Test
+    public void transposeValidColumns()
+    {
+        m = 3;
+        n = 2;
+        matrix = new double[m][n];
+        actual = new Javatrix(m, n);
+        Javatrix transposed = actual.transpose();
+        assertEquals("failure - invalid row dimension", 
+            actual.getRowDimension(), transposed.getColumnDimension());
+    }
+    
+    /**
+     * Test transpose function, valid elements.
+     */
+    @Test
+    public void transposeValidElements()
+    {
+        m = 3;
+        n = 2;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random() * 10 + 1;
+            }
+        }
+        
+        actual = new Javatrix(matrix);
+        Javatrix transposed = actual.transpose();
+
+        int rows = n;
+        int cols = m;
+        double[][] matrixT = new double[rows][cols];
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                matrixT[i][j] = matrix[j][i];
+            }
+        }
+
+        assertArrayEquals("failure - double arrays are not same",
+            matrixT, transposed.getArray());
+    }
+
+    /**
      * Tear down after unit tests.
      */
     @After

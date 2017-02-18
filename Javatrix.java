@@ -477,5 +477,27 @@ public class Javatrix extends java.lang.Object
         }
         return actual;
     }
+
+    /**
+     * Matrix transpose.
+     *
+     * @return A'
+     */
+    public Javatrix transpose()
+    {
+        int rows = this.getColumnDimension();
+        int cols = this.getRowDimension();
+        Javatrix actual = new Javatrix(rows, cols);
+        double a;
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                a = this.get(j, i);
+                actual.set(i, j, a);
+            }
+        }
+        return actual;
+    }
 }
  
