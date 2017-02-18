@@ -130,35 +130,6 @@ public class JavatrixTest
     }
 
     /**
-     * Test constructor that takes a 2D array and 
-     * constructs a larger m by n matrix.
-     */
-    @Test
-    public void matrix2DArrayLargerDimensions()
-    {
-        m = 10;
-        n = 8;
-
-        matrix = new double[3][2];
-        double[][] expected = new double[m][n];
-
-        for (int i = 0; i < m; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                if (i < 3 && j < 2)
-                {
-                    matrix[i][j] = expected[i][j]
-                            = java.lang.Math.random() + 10 * 1;
-                }
-            }
-        }
-
-        Javatrix actual = new Javatrix(matrix, m, n);
-        assertArrayEquals(expected, actual.getArray());
-    }
-         
-    /**
      * Test constructor of zeros for double array of zeros.
      */
     @Test
