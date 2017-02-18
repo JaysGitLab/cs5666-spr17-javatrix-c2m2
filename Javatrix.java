@@ -481,5 +481,26 @@ public class Javatrix extends java.lang.Object
         }
         return actual;
     }
+
+    /**
+     * Unary minus.
+     *
+     * @return -A
+     */
+    public Javatrix uminus()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double a;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j) * -1;
+                this.set(i, j, a);
+            }
+        }
+        return this;
+    }
 }
  

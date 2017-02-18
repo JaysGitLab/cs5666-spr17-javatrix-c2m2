@@ -612,7 +612,7 @@ public class JavatrixTest
        
         double[] c = {2.2, 4.4, 6.6};
         double[] d = {3.3, 1.1, 8.8};
-	double[][] matrixB = new double[m][n];
+        double[][] matrixB = new double[m][n];
         matrixB[0] = c;
         matrixB[1] = d;
         
@@ -628,7 +628,7 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = new Javatrix(matrixB);
         Javatrix actualC = actual.arrayLeftDivide(actualB);
-	assertNotSame("should not be same", actual, actualC);
+        assertNotSame("should not be same", actual, actualC);
     }
 	
     /**
@@ -892,6 +892,55 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = actual.times(scalar);
         assertNotSame("should not be same", actual, actualB);
+    }
+
+    /**
+     * Test uminus function, returns valid.
+     */
+    @Test
+    public void uminusValid()
+    {
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        double[][] matrixN = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random() * 10 + 1;
+                matrixN[i][j] = matrix[i][j] * -1;
+            }
+        }
+
+        actual = new Javatrix(matrix);
+        actual = actual.uminus();
+        assertArrayEquals("failure - double array are not same",
+            matrixN, actual.getArray());
+    }
+    
+    /**
+     * Test uminus function, returns same object.
+     */
+    @Test
+    public void uminusSameObj()
+    {
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        double[][] matrixN = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random() * 10 + 1;
+                matrixN[i][j] = matrix[i][j] * -1;
+            }
+        }
+
+        actual = new Javatrix(matrix);
+        Javatrix actualB = actual.uminus();
+        assertSame("should be same", actual, actualB);
     }
 
     /**
