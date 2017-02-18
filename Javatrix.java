@@ -481,5 +481,27 @@ public class Javatrix extends java.lang.Object
         }
         return actual;
     }
+
+    /**
+     * Make a one-dimensional row packed copy of the internal array.
+     *
+     * @return copy row packed 1D array
+     */
+    public double[] getRowPackedCopy()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double[] copy = new double[m * n];
+        int count = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                copy[count] = this.getArray()[i][j];
+                count++;
+            }
+        }
+        return copy;
+    }
 }
  

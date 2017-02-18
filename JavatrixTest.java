@@ -895,6 +895,40 @@ public class JavatrixTest
     }
 
     /**
+     * Test getRowPackedCopy function, valid.
+     */
+    @Test
+    public void getRowPackedCopyValid()
+    {
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random() * 10 + 1;
+            }
+        }
+        actual = new Javatrix(matrix);
+        double[] rowPacked = actual.getRowPackedCopy();
+
+        double[] rowPackedB = new double[m * n];
+        int count = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                rowPackedB[count] = matrix[i][j];
+                count++;
+            }
+        }
+
+        assertArrayEquals("failure - double arrays are not same",
+            rowPacked, rowPackedB, 0);
+    }
+
+    /**
      * Tear down after unit tests.
      */
     @After
