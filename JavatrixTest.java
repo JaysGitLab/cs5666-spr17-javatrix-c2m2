@@ -583,7 +583,7 @@ public class JavatrixTest
        
         double[] c = {2.2, 4.4, 6.6};
         double[] d = {3.3, 1.1, 8.8};
-	double[][] matrixB = new double[m][n];
+        double[][] matrixB = new double[m][n];
         matrixB[0] = c;
         matrixB[1] = d;
         
@@ -599,7 +599,7 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = new Javatrix(matrixB);
         Javatrix actualC = actual.arrayLeftDivide(actualB);
-	assertNotSame("should not be same", actual, actualC);
+        assertNotSame("should not be same", actual, actualC);
     }
 	
     /**
@@ -863,6 +863,50 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = actual.times(scalar);
         assertNotSame("should not be same", actual, actualB);
+    }
+
+    /**
+     * Test getMatrix i0 i1 j0 j1, valid.
+     */
+    @Test
+    public void getMatrixIIJJ()
+    {
+        m = 5;
+        n = 4;
+        actual = Javatrix.random(m, n);
+        int i0 = 1;
+        int i1 = 3;
+        int j0 = 1;
+        int j1 = 2;
+        Javatrix actualB = actual.getMatrix(i0, i1, j0, j1);
+        int rows = i1 - i0 + 1;
+        int cols = j1 - j0 + 1;
+        double[][] matrixB = new double[rows][cols];
+        for (int i = i0; i < rows; i++)
+        {
+            for (int j = j0; j < cols; j++)
+            {
+                matrixB[i][j] = actual.get(i, j);
+            }
+        }
+        assertArrayEquals("failure - double arrays are not same",
+            matrixB, actualB.getArray());
+    }
+
+    /**
+     * Test getMatrix i0 i1 j0 j1, exception.
+     */
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void getMatrixIIJJException()
+    {
+        m = 5;
+        n = 4;
+        actual = Javatrix.random(m, n);
+        int i0 = 4;
+        int i1 = 6;
+        int j0 = 1;
+        int j1 = 2;
+        Javatrix actualB = actual.getMatrix(i0, i1, j0, j1);
     }
 
     /**

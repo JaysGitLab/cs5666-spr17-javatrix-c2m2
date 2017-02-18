@@ -477,5 +477,38 @@ public class Javatrix extends java.lang.Object
         }
         return actual;
     }
+
+    /**
+     * Get a submatrix.
+     *
+     * @param i0 initial row index
+     * @param i1 final row index
+     * @param j0 initial column index
+     * @param j1 final column index
+     * @return actual submatrix
+     * @throws ArrayIndexOutOfBoundsException sumatrix indices
+     */
+    public Javatrix getMatrix(int i0, int i1, int j0, int j1) 
+        throws ArrayIndexOutOfBoundsException
+    {
+        if (i0 > i1 || j0 > j1 
+            || i0 >= this.m || i1 >= this.m 
+            || j0 >= this.n || j1 >= this.n)
+        {
+            throw new ArrayIndexOutOfBoundsException("Invalid indices");
+        } 
+        int rows = i1 - i0 + 1;
+        int cols = j1 - j0 + 1;;
+        Javatrix actual = new Javatrix(rows, cols);
+        for (int i = i0; i < rows; i++)
+        {
+            for (int j = j0; j < cols; j++)
+            {
+                double a = this.get(i, j);
+                actual.set(i, j, a);
+            }
+        }
+        return actual;
+    }
 }
  
