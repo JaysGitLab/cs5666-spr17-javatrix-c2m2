@@ -866,6 +866,36 @@ public class JavatrixTest
     }
 
     /**
+     * Test normF function, valid.
+     */
+    @Test
+    public void normFValid()
+    {
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random() * 10 + 1;
+            }
+        }
+        actual = new Javatrix(matrix);
+        double norm = actual.normF();
+        double sum = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                sum += java.lang.Math.pow(matrix[i][j], 2);
+            }
+        }
+        double normTest = java.lang.Math.sqrt(sum);
+        assertEquals("failure - doubles should be equal", norm, normTest, 0);
+    }
+
+    /**
      * Tear down after unit tests.
      */
     @After
