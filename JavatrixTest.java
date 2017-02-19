@@ -865,49 +865,6 @@ public class JavatrixTest
         assertNotSame("should not be same", actual, actualB);
     }
 
-    /** Test getMatrix valid.
-     */
-    @Test
-    public void getMatrixValidIndices()
-    {
-        m = 4;
-        n = 5;
-        matrix = new double[m][n];
-        for (int i = 0; i < m; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                matrix[i][j] = java.lang.Math.random();
-            }
-        }
-        int[] r  = {0,0,1,2};
-        int[] c = {0,1,2,2};
-        actual = new Javatrix(matrix);
-        actual = actual.getMatrix(r, c);
-        matrix = new double[4][4];
-        int row, col;
-        for (int i = 0; i < 4; i++)
-        {
-            row = r[i];
-            col = c[i];
-            matrix[row][col] = actual.get(row, col);
-        }
-        assertArrayEquals(matrix, actual.getArray());
-    }
-
-    /** Test getMatrix, exception thrown.
-     */
-    @Test(expected = ArrayIndexOutOfBoundsException.class)
-    public void getMatrixIndexOutOfBounds()
-    {
-        m = 4;
-        n = 5;
-        actual = new Javatrix(m, n);
-        int[]r = {0,0,1,1,2,2};
-        int[]c = {0,1,2,3,4,5};
-        actual = actual.getMatrix(r, c);
-    }
-
     /**
      * Tear down after unit tests.
      */
