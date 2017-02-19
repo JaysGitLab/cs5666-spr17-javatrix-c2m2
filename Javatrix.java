@@ -509,5 +509,43 @@ public class Javatrix extends java.lang.Object
         }
         return subMatrix;
     }
+
+
+    /**
+     * Get a submatrix.
+     *
+     * @param r - an array of row indices
+     * @param j0 - the initial column index
+     * @param j1 - the final column index
+     * @return submatrix(r(:), j0:j1)
+     * @throws ArrayIndexOutOfBoundsException if submatrix
+     * has larger dimensions than this.matrix.
+     */
+    public Javatrix getMatrix(int[] r, int j0, int j1)
+        throws ArrayIndexOutOfBoundsException
+    {
+        m = r.length;
+        n = j1 - j0 + 1;
+        int row;
+        int col = 0;
+        if (m > this.getRowDimension() || j1 > this.getColumnDimension())
+        {
+            String ex = "Submatrix must have dimensions "
+                + "less than or equal to matrix.";
+            throw new ArrayIndexOutOfBoundsException(ex);
+        }
+        Javatrix subMatrix = new Javatrix(m, n);;
+        for (int i = 0; i < m; i++)
+        {
+            col = 0;
+            for (int j = j0; j <= j1; j++)
+            {
+                row = r[i];
+                subMatrix.matrix[i][col] = this.get(row, j);
+                col++;
+            }
+        }
+        return subMatrix;
+    }
 }
  
