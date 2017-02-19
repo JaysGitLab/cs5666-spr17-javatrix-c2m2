@@ -477,5 +477,44 @@ public class Javatrix extends java.lang.Object
         }
         return actual;
     }
+
+   /**
+     * Construct a matrix C = A * B.
+     *
+     * @param B the matrix multiplying against.
+     * @param mB the number of rows in B.
+     * @param nB the number of columns in B.
+     * @throws IllegalArgumentException if inner 
+     * dimensions do not agree.
+     * @return A * B
+     */
+    public Javatrix times(Javatrix B)
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        int mB = B.getRowDimension();
+        int nB = B.getColumnDimension();
+
+        if (n != mB)
+        {
+            String ex = "Inner dimensions of A and B must match.";
+            throw new IllegalArgumentException(ex);
+        }
+        Javatrix actual = new Javatrix(n, mB);
+        double sum = 0;
+        for (int i = 0; i < n; i++)
+        {
+            for (int j = 0; j < mB; j++)
+            {
+                for (int iB = 0; iB < nB; iB++)
+                {
+                    sum += B.get(iB, j) * this.get(i, iB);
+                }
+                actual.set(i, j, sum);
+                sum = 0;
+            }
+        }
+        return actual;
+    }
 }
  

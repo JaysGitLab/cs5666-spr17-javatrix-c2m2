@@ -866,6 +866,62 @@ public class JavatrixTest
     }
 
     /**
+     * Test timesLA function, valid values.
+     */
+    @Test
+    public void timesLAValid()
+    {
+        m = 2;
+        n = 2;
+        double[] a = {1, 2};
+        double[] b = {3, 4};
+        matrix = new double[m][n];
+        matrix[0] = a;
+        matrix[1] = b;
+
+        double[] c = {2, 2};
+        double[] d = {3, 1};
+        double[][] matrixB = new double[m][n];
+        matrixB[0] = c;
+        matrixB[1] = d;
+
+        double[][] matrixC = new double[m][n];
+        matrixC[0][0] = 8;
+        matrixC[0][1] = 18;
+        matrixC[1][0] = 4;
+        matrixC[1][1] = 10;
+
+        actual = new Javatrix(matrix);
+        Javatrix actualB = new Javatrix(matrixB);
+        Javatrix actualC = actual.times(actualB);
+        assertArrayEquals("failure - double arrays are not same",
+            matrixC, actualC.getArray());
+    }
+
+    /**
+     * Test for times (Linear algebraic) where inner dimensions
+     * do not agree.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void timesLAException()
+    {
+        m = 2;
+        n = 2;
+        matrix = new double[m][n];
+        matrix[0] = new double[2];
+        matrix[1] = new double[3];
+
+        int x = 4;
+        int y = 2;
+        double[][]  matrixB = new double[x][y];
+        matrixB[0] = new double[4];
+        matrix[1] = new double[5];
+
+        Javatrix actual = new Javatrix(matrix);
+        Javatrix actualB = new Javatrix(matrixB);
+    }
+
+    /**
      * Tear down after unit tests.
      */
     @After
