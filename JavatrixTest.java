@@ -583,7 +583,7 @@ public class JavatrixTest
        
         double[] c = {2.2, 4.4, 6.6};
         double[] d = {3.3, 1.1, 8.8};
-	double[][] matrixB = new double[m][n];
+        double[][] matrixB = new double[m][n];
         matrixB[0] = c;
         matrixB[1] = d;
         
@@ -599,7 +599,7 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = new Javatrix(matrixB);
         Javatrix actualC = actual.arrayLeftDivide(actualB);
-	assertNotSame("should not be same", actual, actualC);
+        assertNotSame("should not be same", actual, actualC);
     }
 	
     /**
@@ -863,6 +863,39 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = actual.times(scalar);
         assertNotSame("should not be same", actual, actualB);
+    }
+
+    /**
+     * Test normInf function, valid.
+     */
+    @Test
+    public void normInfValid()
+    {
+        m = 2;
+        n = 3;
+        matrix = new double[m][n];
+        double[] a = {1.1, 2.2, 3.3};
+        double[] b = {4.4, 5.5, 6.6};
+        matrix[0] = a;
+        matrix[1] = b;
+        actual = new Javatrix(matrix);
+        double sum = 0;
+        double tmp = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                tmp += matrix[i][j];
+            }
+            if (tmp > sum)
+            {
+                sum = tmp;
+            }
+            tmp = 0;
+        }
+        double maxRowSum = actual.normInf();
+        assertEquals("failure - max row sum is invalid", 
+            sum, maxRowSum, 0);
     }
 
     /**
