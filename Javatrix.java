@@ -477,5 +477,31 @@ public class Javatrix extends java.lang.Object
         }
         return actual;
     }
+
+    /**
+     * One norm.
+     *
+     * @return sum maximum column sum
+     */
+    public double norm1()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double sum = 0;
+        double tmp = 0;
+        for (int j = 0; j < n; j++)
+        {
+            for (int i = 0; i < m; i++)
+            {
+                tmp += this.get(i, j);
+            }
+            if (tmp > sum)
+            {
+                sum = tmp;
+            }
+            tmp = 0;
+        }
+        return sum;
+    }
 }
  
