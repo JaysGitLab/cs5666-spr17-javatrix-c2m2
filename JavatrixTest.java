@@ -866,6 +866,43 @@ public class JavatrixTest
     }
 
     /**
+     * Test getMatrix(int[] r, int j0, int j)
+     * with valid indices.
+     */
+    @Test
+    public void getMatrixColumnRangeValid()
+    {
+        m = 4;
+        n = 5;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random();
+            }
+        }
+        int[] r = {0, 1, 2};
+        int j0 = 1;
+        int j1 = 3;
+        actual = new Javatrix(matrix);
+        actual = actual.getMatrix(r, j0, j1);
+        double[][] subMatrix = new double[3][3];
+        int row;
+        int col = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            col = 0;
+            for (int j = j0; j < j1; j++)
+            {
+                row = r[i];
+                subMatrix[i][col] = matrix[row][j];
+            }
+        }
+        assertArrayEquals(subMatrix, actual.getArray());
+    }
+
+    /**
      * Tear down after unit tests.
      */
     @After
