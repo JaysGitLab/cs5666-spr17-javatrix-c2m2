@@ -513,7 +513,7 @@ public class Javatrix extends java.lang.Object
                 }
                 row = r[i];
                 col = c[i];
-                subMatrix.matrix[i][j] = this.get(row, col);
+                subMatrix.set(i, j, this.get(row, col));
             }
         }
         return subMatrix;
