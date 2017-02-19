@@ -865,6 +865,102 @@ public class JavatrixTest
         assertNotSame("should not be same", actual, actualB);
     }
 
+    /** Test getMatrix valid.
+     */
+    @Test
+    public void getMatrixValidIndices()
+    {
+        m = 4;
+        n = 5;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random();
+            }
+        }
+        int[] r  = {0, 0, 1, 2};
+        int[] c = {0, 1, 2, 2};
+        actual = new Javatrix(matrix);
+        actual = actual.getMatrix(r, c);
+        matrix = new double[4][4];
+        int row;
+        int col;
+        for (int i = 0; i < 4; i++)
+        {
+            row = r[i];
+            col = c[i];
+            matrix[row][col] = actual.get(row, col);
+        }
+        assertArrayEquals(matrix, actual.getArray());
+    }
+
+    /** Test getMatrix, exception thrown.
+     */
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void getMatrixIndexOutOfBounds()
+    {
+        m = 4;
+        n = 5;
+        actual = new Javatrix(m, n);
+        int[]r = {0, 0, 1, 1, 2, 2};
+        int[]c = {0, 1, 2, 3, 4, 5};
+        actual = actual.getMatrix(r, c);
+    }
+
+
+    /** Test getMatrix valid column range.
+     */
+    @Test
+    public void getMatrixValidColumnRange()
+    {
+        m = 4;
+        n = 5;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random();
+            }
+        }
+        int[] r  = {0, 1, 2};
+        int j0 = 1;
+        int j1 = 3;
+        actual = new Javatrix(matrix);
+        actual = actual.getMatrix(r, j0, j1);
+        Javatrix subMatrix = new Javatrix(3, 3);
+        int row;
+        int col = 0;
+        for (int i = 0; i < 3; i++)
+        {
+            col = 0;
+            for (int j = j0; j <= j1; j++)
+            {
+                row = r[i];
+                subMatrix.getArray()[i][col] = matrix[row][j];
+                col++;
+            }
+        }
+        assertArrayEquals(subMatrix.getArray(), actual.getArray());
+    }
+
+    /** Test getMatrix, invalid column range.
+     *  Should throw exception.
+     */
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void getMatrixRangeOutOfBounds()
+    {
+        m = 4;
+        n = 5;
+        actual = new Javatrix(m, n);
+        int[]r = {0, 0, 1, 1, 2, 2};
+        int j0 = 1;
+        int j1 = 6;
+        actual = actual.getMatrix(r, j0, j1);
+    }
+
     /**
      * Tear down after unit tests.
      */
