@@ -865,7 +865,7 @@ public class JavatrixTest
         assertNotSame("should not be same", actual, actualB);
     }
 
-    /** Test getMatrix valid.
+    /** Test getMatrix(int[] r, int[] c) valid.
      */
     @Test
     public void getMatrixValidIndices()
@@ -884,16 +884,19 @@ public class JavatrixTest
         int[] c = {0, 1, 2, 2};
         actual = new Javatrix(matrix);
         actual = actual.getMatrix(r, c);
-        matrix = new double[4][4];
+        double[][] subMatrix = new double[4][4];
         int row;
         int col;
         for (int i = 0; i < 4; i++)
         {
-            row = r[i];
-            col = c[i];
-            matrix[row][col] = actual.get(row, col);
+            for (int j = 0; j < 4; j++)
+            {
+                row = r[i];
+                col = c[i];
+                subMatrix[i][j] = matrix[row][col];
+            }
         }
-        assertArrayEquals(matrix, actual.getArray());
+        assertArrayEquals(subMatrix, actual.getArray());
     }
 
     /** Test getMatrix, exception thrown.
@@ -904,8 +907,8 @@ public class JavatrixTest
         m = 4;
         n = 5;
         actual = new Javatrix(m, n);
-        int[]r = {0, 0, 1, 1, 2, 2};
-        int[]c = {0, 1, 2, 3, 4, 5};
+        int[] r = {0, 0, 1, 1, 2, 2};
+        int[] c = {0, 1, 2, 3, 4, 5};
         actual = actual.getMatrix(r, c);
     }
 
