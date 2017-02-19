@@ -866,6 +866,42 @@ public class JavatrixTest
     }
 
     /**
+     * Test trace function, valid.
+     */
+    @Test
+    public void traceValid()
+    {
+        m = 2;
+        n = 2;
+        double[] a = {1, 2};
+        double[] b = {4, 5};
+        matrix = new double[m][n];
+        matrix[0] = a;
+        matrix[1] = b;
+
+        double tr = matrix[0][0] + matrix[1][1];
+
+        actual = new Javatrix(matrix);
+        double ace = actual.trace();
+        assertEquals(tr, ace, 0);
+    }
+
+    /**
+     * Test of trace that does not have correct dimensions.
+     */
+    @Test(expected = IllegalArgumentException.class)
+    public void traceThrowsException()
+    {
+        m = 2;
+        n = 3;
+        matrix = new double[m][n];
+        matrix[0] = new double[1];
+        matrix[1] = new double[3];
+
+        Javatrix actual = new Javatrix(matrix);
+    }
+
+    /**
      * Tear down after unit tests.
      */
     @After

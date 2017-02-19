@@ -477,5 +477,31 @@ public class Javatrix extends java.lang.Object
         }
         return actual;
     }
+
+    /**
+     * Gets the trace of a square matrix.
+     *
+     * @throws IllegalArgumentException if rows and
+     * columns are not the same.
+     * @return the trace of the matrix.
+     **/
+    public double trace() throws IllegalArgumentException
+    {
+        m = this.m;
+        n = this.n;
+        double ace = 0;
+        if (m != n)
+        {
+            String ex = "Rows and Columns must be same length.";
+            throw new IllegalArgumentException(ex);
+        }
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            ace += this.get(i, i);
+        }
+        return ace;
+    }
+
 }
  
