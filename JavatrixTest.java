@@ -598,6 +598,33 @@ public class JavatrixTest
         assertArrayEquals("failure - double arrays are not same",
             matrix, actual.getArray());
     }
+    
+    /**
+     * Test timesEquals function, returns same object.
+     */
+    @Test
+    public void timesEqualsSameObj()
+    {
+        m = 2;
+        n = 3;
+        double scalar = 3.3;
+        double[] a = {1, 2, 3};
+        double[] b = {4, 5, 6};
+        matrix = new double[m][n];
+        matrix[0] = a;
+        matrix[1] = b;
+
+        double[] c = {2, 3, 4};
+        double[] d = {9, 5, 1};
+        double[][] matrixB = new double[m][n];
+        matrixB[0] = c;
+        matrixB[1] = d;
+
+        actual = new Javatrix(matrix);
+        Javatrix actualB = new Javatrix(matrixB);
+        Javatrix actualC = actual.timesEquals(scalar);
+        assertSame("should be same object", actual, actualC);
+    }
 
     /**
      * Tear down after unit tests.
