@@ -694,6 +694,5 @@ public class Javatrix extends java.lang.Object
         }
         return ace;
     }
-
 }
- 
+

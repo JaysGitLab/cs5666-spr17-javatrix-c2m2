@@ -563,7 +563,7 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = new Javatrix(matrixB);
         Javatrix actualC = actual.arrayLeftDivide(actualB);
-	assertArrayEquals("failure - double arrays are not same",
+        assertArrayEquals("failure - double arrays are not same",
             matrixC, actualC.getArray());
     }
 
@@ -583,7 +583,7 @@ public class JavatrixTest
        
         double[] c = {2.2, 4.4, 6.6};
         double[] d = {3.3, 1.1, 8.8};
-	double[][] matrixB = new double[m][n];
+        double[][] matrixB = new double[m][n];
         matrixB[0] = c;
         matrixB[1] = d;
         
@@ -599,7 +599,7 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = new Javatrix(matrixB);
         Javatrix actualC = actual.arrayLeftDivide(actualB);
-	assertNotSame("should not be same", actual, actualC);
+        assertNotSame("should not be same", actual, actualC);
     }
 	
     /**
@@ -863,6 +863,294 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = actual.times(scalar);
         assertNotSame("should not be same", actual, actualB);
+    }
+
+    /** Test getMatrix(int[] r, int[] c) valid.
+     */
+    @Test
+    public void getMatrixValidIndices()
+    {
+        m = 4;
+        n = 5;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random();
+            }
+        }
+        int[] r  = {0, 0, 1, 2};
+        int[] c = {0, 1, 2, 2};
+        actual = new Javatrix(matrix);
+        actual = actual.getMatrix(r, c);
+        double[][] subMatrix = new double[4][4];
+        int row;
+        int col;
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                row = r[i];
+                col = c[i];
+                subMatrix[i][j] = matrix[row][col];
+            }
+        }
+        assertArrayEquals(subMatrix, actual.getArray());
+    }
+
+    /** Test getMatrix, exception thrown.
+     */
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void getMatrixIndexOutOfBounds()
+    {
+        m = 4;
+        n = 5;
+        actual = new Javatrix(m, n);
+        int[] r = {0, 0, 1, 1, 2, 2};
+        int[] c = {0, 1, 2, 3, 4, 5};
+        actual = actual.getMatrix(r, c);
+    }
+
+    /**
+     * Test norm1 function, valid.
+     */
+    @Test
+    public void norm1Valid()
+    {
+        m = 2;
+        n = 3;
+        matrix = new double[m][n];
+        double[] a = {1.1, 2.2, 3.3};
+        double[] b = {4.4, 5.5, 6.6};
+        matrix[0] = a;
+        matrix[1] = b;
+        actual = new Javatrix(matrix);
+        double sum = 0;
+        double tmp = 0;
+        for (int j = 0; j < n; j++)
+        {
+            for (int i = 0; i < m; i++)
+            {
+                tmp += matrix[i][j];
+            }
+            if (tmp > sum)
+            {
+                sum = tmp;
+            }
+            tmp = 0;
+        }
+        double maxColSum = actual.norm1();
+        assertEquals("failure - max col sum is invalid", 
+            sum, maxColSum, 0);
+    }
+
+    /**
+     * Test normInf function, valid.
+     */
+    @Test
+    public void normInfValid()
+    {
+        m = 2;
+        n = 3;
+        matrix = new double[m][n];
+        double[] a = {1.1, 2.2, 3.3};
+        double[] b = {4.4, 5.5, 6.6};
+        matrix[0] = a;
+        matrix[1] = b;
+        actual = new Javatrix(matrix);
+        double sum = 0;
+        double tmp = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                tmp += matrix[i][j];
+            }
+            if (tmp > sum)
+            {
+                sum = tmp;
+            }
+            tmp = 0;
+        }
+        double maxRowSum = actual.normInf();
+        assertEquals("failure - max row sum is invalid", 
+            sum, maxRowSum, 0);
+    }
+     
+    /**
+     * Test normF function, valid.
+     */
+    @Test
+    public void normFValid()
+    {
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        double[][] matrixN = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random() * 10 + 1;
+            }
+        }
+        actual = new Javatrix(matrix);
+        double norm = actual.normF();
+        double sum = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                sum += java.lang.Math.pow(matrix[i][j], 2);
+            }
+        }
+        double normTest = java.lang.Math.sqrt(sum);
+        assertEquals("failure - doubles should be equal", norm, normTest, 0);
+    }
+
+    /**
+     * Test uminus function, returns valid.
+     */
+    @Test
+    public void uminusValid()
+    {
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        double[][] matrixN = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random() * 10 + 1;
+                matrixN[i][j] = matrix[i][j] * -1;
+            }
+        }
+
+        actual = new Javatrix(matrix);
+        actual = actual.uminus();
+        assertArrayEquals("failure - double array are not same",
+            matrixN, actual.getArray());
+    }
+    
+    /**
+     * Test uminus function, returns same object.
+     */
+    @Test
+    public void uminusSameObj()
+    {
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        double[][] matrixN = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random() * 10 + 1;
+                matrixN[i][j] = matrix[i][j] * -1;
+            }
+        }
+
+        actual = new Javatrix(matrix);
+        Javatrix actualB = actual.uminus();
+        assertSame("should be same", actual, actualB);
+    }
+    
+    /**
+     * Test copy function, valid.
+     */
+    @Test
+    public void copyValid()
+    {
+        m = 5;
+        n = 4;
+        actual = Javatrix.random(m, n);
+        Javatrix copy = actual.copy();
+        assertArrayEquals("failure - double arrays not same", 
+            actual.getArray(), copy.getArray());
+    }    
+
+    /**
+     * Test copy function, new object.
+     */
+    @Test
+    public void copyNewObj()
+    {
+        m = 5;
+        n = 4;
+        actual = Javatrix.random(m, n);
+        Javatrix copy = actual.copy();
+        assertNotSame("should not be same", actual, copy);
+    }
+
+    /**
+     * Test getColumnPackedCopy function, valid.
+     */
+    @Test
+    public void getColumnPackedCopyValid()
+    {
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random() * 10 + 1;
+            }
+        }
+        actual = new Javatrix(matrix);
+        double[] colPacked = actual.getColumnPackedCopy();
+        
+        double[] colPackedB = new double[m * n];
+        int count = 0;
+        for (int j = 0; j < n; j++)
+        {
+            for (int i = 0; i < m; i++)
+            {
+                colPackedB[count] = matrix[i][j];
+                count++;
+            }
+        }
+
+        assertArrayEquals("failure - double arrays are not same", 
+            colPacked, colPackedB, 0);
+    }
+
+    /**
+     * Test getRowPackedCopy function, valid.
+     */
+    @Test
+    public void getRowPackedCopyValid()
+    {
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random() * 10 + 1;
+            }
+        }
+        actual = new Javatrix(matrix);
+        double[] rowPacked = actual.getRowPackedCopy();
+
+        double[] rowPackedB = new double[m * n];
+        int count = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                rowPackedB[count] = matrix[i][j];
+                count++;
+            }
+        }
+
+        assertArrayEquals("failure - double arrays are not same",
+            rowPacked, rowPackedB, 0);
     }
 
     /**
