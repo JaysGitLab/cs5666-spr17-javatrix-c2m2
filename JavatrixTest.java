@@ -614,14 +614,7 @@ public class JavatrixTest
         matrix[0] = a;
         matrix[1] = b;
 
-        double[] c = {2, 3, 4};
-        double[] d = {9, 5, 1};
-        double[][] matrixB = new double[m][n];
-        matrixB[0] = c;
-        matrixB[1] = d;
-
         actual = new Javatrix(matrix);
-        Javatrix actualB = new Javatrix(matrixB);
         Javatrix actualC = actual.timesEquals(scalar);
         assertSame("should be same object", actual, actualC);
     }
