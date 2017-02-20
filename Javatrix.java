@@ -495,7 +495,6 @@ public class Javatrix extends java.lang.Object
             String ex = "Rows and Columns must be same length.";
             throw new IllegalArgumentException(ex);
         }
-        matrix = new double[m][n];
         for (int i = 0; i < m; i++)
         {
             ace += this.get(i, i);
