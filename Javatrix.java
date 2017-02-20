@@ -402,7 +402,6 @@ public class Javatrix extends java.lang.Object
     /** 
      * Construct a matrix C = A \ B. 
      * 
-     * @param actualB another matrix 
      * @return A \ B 
      */ 
     public Javatrix arrayLeftDivide(Javatrix actualB) 
@@ -429,7 +428,6 @@ public class Javatrix extends java.lang.Object
     /**
      * Construct a matrix C = A / B.
      *
-     * @param actualB another matrix
      * @return A / B
      */
     public Javatrix arrayRightDivide(Javatrix actualB)
@@ -693,6 +691,56 @@ public class Javatrix extends java.lang.Object
             ace += this.get(i, i);
         }
         return ace;
+    }
+
+    /**
+     * Return calling matrix A = A \ B.
+     *
+     * @return A \ B
+     */
+    public Javatrix arrayLeftDivideEquals(Javatrix actualB)
+    {
+        m = actualB.getRowDimension();
+        n = actualB.getColumnDimension();
+        double a;
+        double b;
+        double c;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = actualB.get(i, j);
+                c = b / a;
+                this.set(i, j, c);
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Return calling matrix A = A / B.
+     *
+     * @return A / B
+     */
+    public Javatrix arrayRightDivideEquals(Javatrix actualB)
+    {
+        m = actualB.getRowDimension();
+        n = actualB.getColumnDimension();
+        double a;
+        double b;
+        double c;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = actualB.get(i, j);
+                c = a / b;
+                this.set(i, j, c);
+            }
+        }
+        return this;
     }
 }
 
