@@ -91,16 +91,12 @@ public class Javatrix extends java.lang.Object
         this.m = x;
         this.n = y;
         matrix = new double[m][n];
-        for (int i = 0; i < arr.length; i++)
+        for (int i = 0; i < m; i++)
         {
-            for (int j = 0; j < arr[0].length; j++)
+            for (int j = 0; j < n; j++)
             {
-                // If index not out of range for arr.
-                if (i < m && j < n)
-                {
-                    matrix[i][j] = arr[i][j]; 
-                }
-            }
+                matrix[i][j] = arr[i][j]; 
+            }           
         }
     }
 
@@ -303,6 +299,32 @@ public class Javatrix extends java.lang.Object
     }
 
     /**
+     * Return calling matrix A = A - B.
+     *
+     * @param actualB calling matrix
+     * @return A - B
+     */
+    public Javatrix minusEquals(Javatrix actualB)
+    {
+        m = actualB.getRowDimension();
+        n = actualB.getColumnDimension();
+        double a;
+        double b;
+        double c;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = actualB.get(i, j);
+                c = a - b;
+                this.set(i, j, c);
+            }
+        }
+        return this;
+    }
+    
+    /**
      * Construct a matrix C = A + B.
      *
      * @param actualB another matrix
@@ -330,6 +352,32 @@ public class Javatrix extends java.lang.Object
     }
 
     /**
+     * Return calling matrix A = A + B.
+     *
+     * @param actualB calling matrix
+     * @return A + B
+     */
+    public Javatrix plusEquals(Javatrix actualB)
+    {
+        m = actualB.getRowDimension();
+        n = actualB.getColumnDimension();
+        double a;
+        double b;
+        double c;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = actualB.get(i, j);
+                c = a + b;
+                this.set(i, j, c);
+            }
+        }
+        return this;
+    }
+
+    /**
      * Generate a matrix with random elements.
      *
      * @param m number of rows
@@ -349,6 +397,350 @@ public class Javatrix extends java.lang.Object
             }
         }
         return randomMatrix;
+    }
+
+    /** 
+     * Construct a matrix C = A \ B. 
+     * 
+     * @return A \ B 
+     */ 
+    public Javatrix arrayLeftDivide(Javatrix actualB) 
+    { 
+        m = actualB.getRowDimension(); 
+        n = actualB.getColumnDimension(); 
+        Javatrix actual = new Javatrix(m, n); 
+        double a; 
+        double b; 
+        double c; 
+        for (int i = 0; i < m; i++) 
+        { 
+            for (int j = 0; j < n; j++) 
+            { 
+                a = this.get(i, j); 
+                b = actualB.get(i, j); 
+                c = b / a; 
+                actual.set(i, j, c); 
+            } 
+        } 
+        return actual; 
+    }     
+
+    /**
+     * Construct a matrix C = A / B.
+     *
+     * @return A / B
+     */
+    public Javatrix arrayRightDivide(Javatrix actualB)
+    {
+        m = actualB.getRowDimension();
+        n = actualB.getColumnDimension();
+        Javatrix actual = new Javatrix(m, n);
+        double a;
+        double b;
+        double c;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = actualB.get(i, j);
+                c = a / b;
+                actual.set(i, j, c); 
+            } 
+        } 
+        return actual; 
+    }
+
+    /**
+     * Construct a matrix C = A * s.
+     *
+     * @param scalar multiplier
+     * @return A * s
+     */
+    public Javatrix times(double scalar)
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        Javatrix actual = new Javatrix(m, n);
+        double a;
+        double b;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = a * scalar;
+                actual.set(i, j, b);
+            }
+        }
+        return actual;
+    }
+
+    /**
+     * Get a submatrix.
+     *
+     * @param r - an array of row indices
+     * @param c - an array of column indices
+     * @return submatrix(r(:), c(:))
+     * @throws ArrayIndexOutOfBoundsException if submatrix
+     * has larger dimensions than this.matrix.
+     */
+    public Javatrix  getMatrix(int[] r, int[] c)
+        throws ArrayIndexOutOfBoundsException
+    {
+        String ex = "Submatrix must have dimensions "
+            + "less than or equal to matrix.";
+        if (r.length != c.length || r.length > this.getRowDimension()
+             || c.length > this.getColumnDimension())
+        {
+            throw new ArrayIndexOutOfBoundsException(ex);
+        }
+        m = r.length;
+        n = c.length;
+        int row;
+        int col;
+        Javatrix subMatrix = new Javatrix(m, n);
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (r[i] >= this.getRowDimension()
+                    || c[i] >= this.getColumnDimension())
+                {
+                    throw new ArrayIndexOutOfBoundsException(ex);
+                }
+                row = r[i];
+                col = c[i];
+                subMatrix.set(i, j, this.get(row, col));
+            }
+        }
+        return subMatrix;
+    }        
+   
+    /**
+     * One norm.
+     *
+     * @return sum maximum column sum
+     */
+    public double norm1()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double sum = 0;
+        double tmp = 0;
+        for (int j = 0; j < n; j++)
+        {
+            for (int i = 0; i < m; i++)
+            {
+                tmp += this.get(i, j);
+            }
+            if (tmp > sum)
+            {
+                sum = tmp;
+            }
+            tmp = 0;
+        }
+        return sum;
+
+    }
+
+    /**
+     * Infinity norm.
+     *
+     * @return sum maximum row sum
+     */
+    public double normInf()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double sum = 0;
+        double tmp = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                tmp += this.get(i, j);
+            }
+            if (tmp > sum)
+            {
+                sum = tmp;
+            }
+            tmp = 0;
+        }
+        return sum;
+    }
+    
+    /**
+     * Frobenius norm.
+     * 
+     * @return sqrt of sum of squares of all elements
+     */
+    public double normF()
+    {    
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double sum = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                sum += java.lang.Math.pow(this.get(i, j), 2);
+            }
+        }
+        double normTest = java.lang.Math.sqrt(sum);
+        return normTest;
+    }
+
+    /**
+     * Unary minus.
+     *
+     * @return -A
+     */
+    public Javatrix uminus()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double a;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j) * -1;
+                this.set(i, j, a);
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Make a deep copy of a matrix.
+     * 
+     * @return actual copy
+     */
+    public Javatrix copy()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        Javatrix actual = new Javatrix(this.getArrayCopy());
+        return actual;
+    }
+
+    /**
+     * Make a one-dimensional column packed copy of the internal array.
+     *
+     * @return copy column packed 1D array
+     */
+    public double[] getColumnPackedCopy()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double[] copy = new double[m * n];
+        int count = 0;
+        for (int j = 0; j < n; j++)
+        {
+            for (int i = 0; i < m; i++)
+            {
+                copy[count] = this.getArray()[i][j];
+                count++;
+            }
+        }
+        return copy;
+    }
+
+    /**
+     * Make a one-dimensional row packed copy of the internal array.
+     *
+     * @return copy row packed 1D array
+     */
+    public double[] getRowPackedCopy()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double[] copy = new double[m * n];
+        int count = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                copy[count] = this.getArray()[i][j];
+                count++;
+            }
+        }
+        return copy;
+    }
+
+    /**
+     * Gets the trace of a square matrix.
+     *
+     * @throws IllegalArgumentException if rows and
+     * columns are not the same.
+     * @return the trace of the matrix.
+     **/
+    public double trace() throws IllegalArgumentException
+    {
+        m = this.m;
+        n = this.n;
+        double ace = 0;
+        if (m != n)
+        {
+            String ex = "Rows and Columns must be same length.";
+            throw new IllegalArgumentException(ex);
+        }
+        for (int i = 0; i < m; i++)
+        {
+            ace += this.get(i, i);
+        }
+        return ace;
+    }
+
+    /**
+     * Return calling matrix A = A \ B.
+     *
+     * @return A \ B
+     */
+    public Javatrix arrayLeftDivideEquals(Javatrix actualB)
+    {
+        m = actualB.getRowDimension();
+        n = actualB.getColumnDimension();
+        double a;
+        double b;
+        double c;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = actualB.get(i, j);
+                c = b / a;
+                this.set(i, j, c);
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Return calling matrix A = A / B.
+     *
+     * @return A / B
+     */
+    public Javatrix arrayRightDivideEquals(Javatrix actualB)
+    {
+        m = actualB.getRowDimension();
+        n = actualB.getColumnDimension();
+        double a;
+        double b;
+        double c;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = actualB.get(i, j);
+                c = a / b;
+                this.set(i, j, c);
+            }
+        }
+        return this;
     }
 
     /**
