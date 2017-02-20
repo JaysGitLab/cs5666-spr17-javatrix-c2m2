@@ -402,7 +402,6 @@ public class Javatrix extends java.lang.Object
     /** 
      * Construct a matrix C = A \ B. 
      * 
-     * @param actualB another matrix 
      * @return A \ B 
      */ 
     public Javatrix arrayLeftDivide(Javatrix actualB) 
@@ -429,7 +428,6 @@ public class Javatrix extends java.lang.Object
     /**
      * Construct a matrix C = A / B.
      *
-     * @param actualB another matrix
      * @return A / B
      */
     public Javatrix arrayRightDivide(Javatrix actualB)
