@@ -866,32 +866,6 @@ public class JavatrixTest
     }
 
     /**
-<<<<<<< HEAD
-     * Test uminus function, returns valid.
-     */
-    @Test
-    public void uminusValid()
-    {
-        m = 5;
-        n = 4;
-        matrix = new double[m][n];
-        double[][] matrixN = new double[m][n];
-        for (int i = 0; i < m; i++)
-        {
-            for (int j = 0; j < n; j++)
-            {
-                matrix[i][j] = java.lang.Math.random() * 10 + 1;
-                matrixN[i][j] = matrix[i][j] * -1;
-            }
-        }
-
-        actual = new Javatrix(matrix);
-        actual = actual.uminus();
-        assertArrayEquals("failure - double array are not same",
-            matrixN, actual.getArray());
-    }
-    
-    /**
      * Test norm1 function, valid.
      */
     @Test
@@ -989,6 +963,31 @@ public class JavatrixTest
     }
 
     /**
+     * Test uminus function, returns valid.
+     */
+    @Test
+    public void uminusValid()
+    {
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        double[][] matrixN = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random() * 10 + 1;
+                matrixN[i][j] = matrix[i][j] * -1;
+            }
+        }
+
+        actual = new Javatrix(matrix);
+        actual = actual.uminus();
+        assertArrayEquals("failure - double array are not same",
+            matrixN, actual.getArray());
+    }
+    
+    /**
      * Test uminus function, returns same object.
      */
     @Test
@@ -1022,6 +1021,33 @@ public class JavatrixTest
         m = 0;
         n = 0;
         actual = null;
+    }
+
+    /**
+     * Test copy function, valid.
+     */
+    @Test
+    public void copyValid()
+    {
+        m = 5;
+        n = 4;
+        actual = Javatrix.random(m, n);
+        Javatrix copy = actual.copy();
+        assertArrayEquals("failure - double arrays not same", 
+            actual.getArray(), copy.getArray());
+    }
+
+    /**
+     * Test copy function, new object.
+     */
+    @Test
+    public void copyNewObj()
+    {
+        m = 5;
+        n = 4;
+        actual = Javatrix.random(m, n);
+        Javatrix copy = actual.copy();
+        assertNotSame("should not be same", actual, copy);
     }
 }
 

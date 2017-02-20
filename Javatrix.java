@@ -571,5 +571,18 @@ public class Javatrix extends java.lang.Object
         }
         return this;
     }
+
+    /**
+     * Make a deep copy of a matrix.
+     * 
+     * @return actual copy
+     */
+    public Javatrix copy()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        Javatrix actual = new Javatrix(this.getArrayCopy());
+        return actual;
+    }
 }
 
