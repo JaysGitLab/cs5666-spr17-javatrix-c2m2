@@ -887,8 +887,8 @@ public class JavatrixTest
 
         double[][] matrixC = new double[m][n];
         matrixC[0][0] = 8;
-        matrixC[0][1] = 18;
-        matrixC[1][0] = 4;
+        matrixC[1][0] = 18;
+        matrixC[0][1] = 4;
         matrixC[1][1] = 10;
 
         actual = new Javatrix(matrix);
