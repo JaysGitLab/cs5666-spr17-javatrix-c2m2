@@ -1010,8 +1010,8 @@ public class JavatrixTest
         Javatrix actualB = actual.uminus();
         assertSame("should be same", actual, actualB);
     }
-    
-    /* 
+
+    /**
      * Test copy function, valid.
      */
     @Test
@@ -1023,7 +1023,7 @@ public class JavatrixTest
         Javatrix copy = actual.copy();
         assertArrayEquals("failure - double arrays not same", 
             actual.getArray(), copy.getArray());
-    }
+    }    
 
     /**
      * Test copy function, new object.
@@ -1036,6 +1036,40 @@ public class JavatrixTest
         actual = Javatrix.random(m, n);
         Javatrix copy = actual.copy();
         assertNotSame("should not be same", actual, copy);
+    }
+
+    /**
+     * Test getColumnPackedCopy function, valid.
+     */
+    @Test
+    public void getColumnPackedCopyValid()
+    {
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random() * 10 + 1;
+            }
+        }
+        actual = new Javatrix(matrix);
+        double[] colPacked = actual.getColumnPackedCopy();
+        
+        double[] colPackedB = new double[m * n];
+        int count = 0;
+        for (int j = 0; j < n; j++)
+        {
+            for (int i = 0; i < m; i++)
+            {
+                colPackedB[count] = matrix[i][j];
+                count++;
+            }
+        }
+
+        assertArrayEquals("failure - double arrays are not same", 
+            colPacked, colPackedB, 0);
     }
 
     /**
