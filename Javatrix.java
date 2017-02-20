@@ -479,6 +479,7 @@ public class Javatrix extends java.lang.Object
     }
 
     /**
+<<<<<<< HEAD
      * One norm.
      *
      * @return sum maximum column sum
@@ -600,6 +601,28 @@ public class Javatrix extends java.lang.Object
         for (int j = 0; j < n; j++)
         {
             for (int i = 0; i < m; i++)
+            {
+                copy[count] = this.getArray()[i][j];
+                count++;
+            }
+        }
+        return copy;
+    }
+
+    /**
+     * Make a one-dimensional row packed copy of the internal array.
+     *
+     * @return copy row packed 1D array
+     */
+    public double[] getRowPackedCopy()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double[] copy = new double[m * n];
+        int count = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
             {
                 copy[count] = this.getArray()[i][j];
                 count++;
