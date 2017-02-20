@@ -529,5 +529,26 @@ public class Javatrix extends java.lang.Object
         }
         return sum;
     }
+    
+    /**
+     * Frobenius norm.
+     * 
+     * @return sqrt of sum of squares of all elements
+     */
+    public double normF()
+    {    
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double sum = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                sum += java.lang.Math.pow(this.get(i, j), 2);
+            }
+        }
+        double normTest = java.lang.Math.sqrt(sum);
+        return normTest;
+    }
 }
- 
+

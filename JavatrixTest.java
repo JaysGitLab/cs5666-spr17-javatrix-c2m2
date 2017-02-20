@@ -866,6 +866,7 @@ public class JavatrixTest
     }
 
     /**
+<<<<<<< HEAD
      * Test norm1 function, valid.
      */
     @Test
@@ -929,6 +930,36 @@ public class JavatrixTest
         double maxRowSum = actual.normInf();
         assertEquals("failure - max row sum is invalid", 
             sum, maxRowSum, 0);
+    }
+     
+    /**
+     * Test normF function, valid.
+     */
+    @Test
+    public void normFValid()
+    {
+        m = 5;
+        n = 4;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random() * 10 + 1;
+            }
+        }
+        actual = new Javatrix(matrix);
+        double norm = actual.normF();
+        double sum = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                sum += java.lang.Math.pow(matrix[i][j], 2);
+            }
+        }
+        double normTest = java.lang.Math.sqrt(sum);
+        assertEquals("failure - doubles should be equal", norm, normTest, 0);
     }
 
     /**
