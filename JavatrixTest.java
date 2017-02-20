@@ -865,8 +865,54 @@ public class JavatrixTest
         assertNotSame("should not be same", actual, actualB);
     }
 
+    /** Test getMatrix(int[] r, int[] c) valid.
+     */
+    @Test
+    public void getMatrixValidIndices()
+    {
+        m = 4;
+        n = 5;
+        matrix = new double[m][n];
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = java.lang.Math.random();
+            }
+        }
+        int[] r  = {0, 0, 1, 2};
+        int[] c = {0, 1, 2, 2};
+        actual = new Javatrix(matrix);
+        actual = actual.getMatrix(r, c);
+        double[][] subMatrix = new double[4][4];
+        int row;
+        int col;
+        for (int i = 0; i < 4; i++)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                row = r[i];
+                col = c[i];
+                subMatrix[i][j] = matrix[row][col];
+            }
+        }
+        assertArrayEquals(subMatrix, actual.getArray());
+    }
+
+    /** Test getMatrix, exception thrown.
+     */
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void getMatrixIndexOutOfBounds()
+    {
+        m = 4;
+        n = 5;
+        actual = new Javatrix(m, n);
+        int[] r = {0, 0, 1, 1, 2, 2};
+        int[] c = {0, 1, 2, 3, 4, 5};
+        actual = actual.getMatrix(r, c);
+    }
+
     /**
-<<<<<<< HEAD
      * Test norm1 function, valid.
      */
     @Test
@@ -1011,7 +1057,7 @@ public class JavatrixTest
         Javatrix actualB = actual.uminus();
         assertSame("should be same", actual, actualB);
     }
-
+    
     /**
      * Test copy function, valid.
      */

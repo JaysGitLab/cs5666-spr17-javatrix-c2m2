@@ -479,7 +479,48 @@ public class Javatrix extends java.lang.Object
     }
 
     /**
-<<<<<<< HEAD
+     * Get a submatrix.
+     *
+     * @param r - an array of row indices
+     * @param c - an array of column indices
+     * @return submatrix(r(:), c(:))
+     * @throws ArrayIndexOutOfBoundsException if submatrix
+     * has larger dimensions than this.matrix.
+     */
+    public Javatrix  getMatrix(int[] r, int[] c)
+        throws ArrayIndexOutOfBoundsException
+    {
+        String ex = "Submatrix must have dimensions "
+            + "less than or equal to matrix.";
+        if (r.length != c.length || r.length > this.getRowDimension()
+             || c.length > this.getColumnDimension())
+        {
+            throw new ArrayIndexOutOfBoundsException(ex);
+        }
+        m = r.length;
+        n = c.length;
+        int row;
+        int col;
+        Javatrix subMatrix = new Javatrix(m, n);
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                if (r[i] >= this.getRowDimension()
+                    || c[i] >= this.getColumnDimension())
+                {
+                    throw new ArrayIndexOutOfBoundsException(ex);
+                }
+                row = r[i];
+                col = c[i];
+                subMatrix.set(i, j, this.get(row, col));
+            }
+        }
+        return subMatrix;
+    }
+        
+   
+    /**
      * One norm.
      *
      * @return sum maximum column sum
