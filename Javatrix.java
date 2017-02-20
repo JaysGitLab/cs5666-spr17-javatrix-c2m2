@@ -518,5 +518,113 @@ public class Javatrix extends java.lang.Object
         }
         return subMatrix;
     }
+        
+   
+    /**
+     * One norm.
+     *
+     * @return sum maximum column sum
+     */
+    public double norm1()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double sum = 0;
+        double tmp = 0;
+        for (int j = 0; j < n; j++)
+        {
+            for (int i = 0; i < m; i++)
+            {
+                tmp += this.get(i, j);
+            }
+            if (tmp > sum)
+            {
+                sum = tmp;
+            }
+            tmp = 0;
+        }
+        return sum;
+    }
+
+    /**
+     * Infinity norm.
+     *
+     * @return sum maximum row sum
+     */
+    public double normInf()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double sum = 0;
+        double tmp = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                tmp += this.get(i, j);
+            }
+            if (tmp > sum)
+            {
+                sum = tmp;
+            }
+            tmp = 0;
+        }
+        return sum;
+    }
+    
+    /**
+     * Frobenius norm.
+     * 
+     * @return sqrt of sum of squares of all elements
+     */
+    public double normF()
+    {    
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double sum = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                sum += java.lang.Math.pow(this.get(i, j), 2);
+            }
+        }
+        double normTest = java.lang.Math.sqrt(sum);
+        return normTest;
+    }
+
+    /**
+     * Unary minus.
+     *
+     * @return -A
+     */
+    public Javatrix uminus()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double a;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j) * -1;
+                this.set(i, j, a);
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Make a deep copy of a matrix.
+     * 
+     * @return actual copy
+     */
+    public Javatrix copy()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        Javatrix actual = new Javatrix(this.getArrayCopy());
+        return actual;
+    }
 }
- 
+
