@@ -899,6 +899,39 @@ public class JavatrixTest
     }
 
     /**
+     * Test normInf function, valid.
+     */
+    @Test
+    public void normInfValid()
+    {
+        m = 2;
+        n = 3;
+        matrix = new double[m][n];
+        double[] a = {1.1, 2.2, 3.3};
+        double[] b = {4.4, 5.5, 6.6};
+        matrix[0] = a;
+        matrix[1] = b;
+        actual = new Javatrix(matrix);
+        double sum = 0;
+        double tmp = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                tmp += matrix[i][j];
+            }
+            if (tmp > sum)
+            {
+                sum = tmp;
+            }
+            tmp = 0;
+        }
+        double maxRowSum = actual.normInf();
+        assertEquals("failure - max row sum is invalid", 
+            sum, maxRowSum, 0);
+    }
+
+    /**
      * Tear down after unit tests.
      */
     @After

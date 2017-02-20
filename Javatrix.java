@@ -503,5 +503,31 @@ public class Javatrix extends java.lang.Object
         }
         return sum;
     }
+
+    /**
+     * Infinity norm.
+     *
+     * @return sum maximum row sum
+     */
+    public double normInf()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double sum = 0;
+        double tmp = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                tmp += this.get(i, j);
+            }
+            if (tmp > sum)
+            {
+                sum = tmp;
+            }
+            tmp = 0;
+        }
+        return sum;
+    }
 }
  
