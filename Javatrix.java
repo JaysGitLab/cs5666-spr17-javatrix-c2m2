@@ -544,6 +544,7 @@ public class Javatrix extends java.lang.Object
             tmp = 0;
         }
         return sum;
+
     }
 
     /**
@@ -625,6 +626,50 @@ public class Javatrix extends java.lang.Object
         n = this.getColumnDimension();
         Javatrix actual = new Javatrix(this.getArrayCopy());
         return actual;
+    }
+
+    /**
+     * Make a one-dimensional column packed copy of the internal array.
+     *
+     * @return copy column packed 1D array
+     */
+    public double[] getColumnPackedCopy()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double[] copy = new double[m * n];
+        int count = 0;
+        for (int j = 0; j < n; j++)
+        {
+            for (int i = 0; i < m; i++)
+            {
+                copy[count] = this.getArray()[i][j];
+                count++;
+            }
+        }
+        return copy;
+    }
+
+    /**
+     * Make a one-dimensional row packed copy of the internal array.
+     *
+     * @return copy row packed 1D array
+     */
+    public double[] getRowPackedCopy()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double[] copy = new double[m * n];
+        int count = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                copy[count] = this.getArray()[i][j];
+                count++;
+            }
+        }
+        return copy;
     }
 }
 
