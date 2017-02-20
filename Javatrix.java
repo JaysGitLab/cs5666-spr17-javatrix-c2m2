@@ -481,7 +481,6 @@ public class Javatrix extends java.lang.Object
     /**
      * Return calling matrix A = A \ B.
      *
-     * @param actualB calling matrix
      * @return A \ B
      */
     public Javatrix arrayLeftDivideEquals(Javatrix actualB)
@@ -507,7 +506,6 @@ public class Javatrix extends java.lang.Object
     /**
      * Return calling matrix A = A / B.
      *
-     * @param actualB calling matrix
      * @return A / B
      */
     public Javatrix arrayRightDivideEquals(Javatrix actualB)
