@@ -866,7 +866,6 @@ public class JavatrixTest
     }
 
     /**
-<<<<<<< HEAD
      * Test uminus function, returns valid.
      */
     @Test
@@ -1010,6 +1009,52 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = actual.uminus();
         assertSame("should be same", actual, actualB);
+    }
+
+    /**
+     * Test setMatrix(int i0, i1, j0, j1, Javatrix bigMatrix) valid.
+     */
+    @Test
+    public void setMatrixValid()
+    {
+        m = 5;
+        n = 4;
+        Javatrix random = Javatrix.random(5, 4);
+        int i0 = 0;
+        int i1 = 2;
+        int j0 = 1;
+        int j1 = 3;
+        int rows = i1 - i0 + 1;
+        int cols = j1 - j0 + 1;
+        actual = new Javatrix(4, 4);
+        actual.setMatrix(i0, i1, j0, j1, random);
+        double[][] subMatrix = new double[4][4];
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                double a = random.get(i, j);
+                subMatrix[i][j] = a;
+            }
+        }
+        assertArrayEquals(actual.getArray(), subMatrix);
+    }
+
+    /** Test setMatrix(int i0; int i1, int j0, int j1, Javatrix bigMatrix)
+     *  invalid indices throws exception.
+     */
+    @Test(expected = ArrayIndexOutOfBoundsException.class)
+    public void setMatrixInvalidIndices()
+    {
+        m = 5;
+        n = 4;
+        Javatrix random = Javatrix.random(5, 4);
+        int i0 = 5;
+        int i1 = 4;
+        int j0 = 3;
+        int j1 = 5;
+        actual = new Javatrix(3, 4);
+        actual.setMatrix(i0, i1, j0, j1, random);
     }
 
     /**
