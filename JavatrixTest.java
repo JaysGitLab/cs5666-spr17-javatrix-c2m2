@@ -563,7 +563,7 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = new Javatrix(matrixB);
         Javatrix actualC = actual.arrayLeftDivide(actualB);
-	assertArrayEquals("failure - double arrays are not same",
+        assertArrayEquals("failure - double arrays are not same",
             matrixC, actualC.getArray());
     }
 
@@ -1010,20 +1010,8 @@ public class JavatrixTest
         Javatrix actualB = actual.uminus();
         assertSame("should be same", actual, actualB);
     }
-
-    /**
-     * Tear down after unit tests.
-     */
-    @After
-    public void tearDown()
-    {
-        matrix = null;
-        m = 0;
-        n = 0;
-        actual = null;
-    }
-
-    /**
+    
+    /* 
      * Test copy function, valid.
      */
     @Test
@@ -1048,6 +1036,18 @@ public class JavatrixTest
         actual = Javatrix.random(m, n);
         Javatrix copy = actual.copy();
         assertNotSame("should not be same", actual, copy);
+    }
+
+    /**
+     * Tear down after unit tests.
+     */
+    @After
+    public void tearDown()
+    {
+        matrix = null;
+        m = 0;
+        n = 0;
+        actual = null;
     }
 }
 
