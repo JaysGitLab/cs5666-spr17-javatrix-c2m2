@@ -91,16 +91,12 @@ public class Javatrix extends java.lang.Object
         this.m = x;
         this.n = y;
         matrix = new double[m][n];
-        for (int i = 0; i < arr.length; i++)
+        for (int i = 0; i < m; i++)
         {
-            for (int j = 0; j < arr[0].length; j++)
+            for (int j = 0; j < n; j++)
             {
-                // If index not out of range for arr.
-                if (i < m && j < n)
-                {
-                    matrix[i][j] = arr[i][j]; 
-                }
-            }
+                matrix[i][j] = arr[i][j]; 
+            }           
         }
     }
 
@@ -483,6 +479,79 @@ public class Javatrix extends java.lang.Object
     }
 
     /**
+     * One norm.
+     *
+     * @return sum maximum column sum
+     */
+    public double norm1()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double sum = 0;
+        double tmp = 0;
+        for (int j = 0; j < n; j++)
+        {
+            for (int i = 0; i < m; i++)
+            {
+                tmp += this.get(i, j);
+            }
+            if (tmp > sum)
+            {
+                sum = tmp;
+            }
+            tmp = 0;
+        }
+        return sum;
+    }
+
+    /**
+     * Infinity norm.
+     *
+     * @return sum maximum row sum
+     */
+    public double normInf()
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double sum = 0;
+        double tmp = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                tmp += this.get(i, j);
+            }
+            if (tmp > sum)
+            {
+                sum = tmp;
+            }
+            tmp = 0;
+        }
+        return sum;
+    }
+    
+    /**
+     * Frobenius norm.
+     * 
+     * @return sqrt of sum of squares of all elements
+     */
+    public double normF()
+    {    
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double sum = 0;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                sum += java.lang.Math.pow(this.get(i, j), 2);
+            }
+        }
+        double normTest = java.lang.Math.sqrt(sum);
+        return normTest;
+    }
+
+    /**
      * Unary minus.
      *
      * @return -A
@@ -503,4 +572,4 @@ public class Javatrix extends java.lang.Object
         return this;
     }
 }
- 
+
