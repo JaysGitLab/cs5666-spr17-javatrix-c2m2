@@ -601,7 +601,7 @@ public class JavatrixTest
         Javatrix actualC = actual.arrayLeftDivide(actualB);
         assertNotSame("should not be same", actual, actualC);
     }
-	
+    
     /**
      * Test minus function, valid values.
      */
@@ -1310,6 +1310,56 @@ public class JavatrixTest
         actual = new Javatrix(matrix);
         Javatrix actualB = new Javatrix(matrixB);
         Javatrix actualC = actual.arrayRightDivideEquals(actualB);
+        assertSame("should be same object", actual, actualC);
+    }
+
+    /**
+     * Test timesEquals function, valid values.
+     */
+    @Test
+    public void timesEqualsValid()
+    {
+        m = 2;
+        n = 3;
+        double scalar = 3.3;
+        double[] a = {1, 2, 3};
+        double[] b = {4, 5, 6};
+        matrix = new double[m][n];
+        matrix[0] = a;
+        matrix[1] = b;
+
+        actual = new Javatrix(matrix);
+        
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                matrix[i][j] = matrix[i][j] * scalar;
+            }
+        }
+
+        actual = actual.timesEquals(scalar);
+        assertArrayEquals("failure - double arrays are not same",
+            matrix, actual.getArray());
+    }
+    
+    /**
+     * Test timesEquals function, returns same object.
+     */
+    @Test
+    public void timesEqualsSameObj()
+    {
+        m = 2;
+        n = 3;
+        double scalar = 3.3;
+        double[] a = {1, 2, 3};
+        double[] b = {4, 5, 6};
+        matrix = new double[m][n];
+        matrix[0] = a;
+        matrix[1] = b;
+
+        actual = new Javatrix(matrix);
+        Javatrix actualC = actual.timesEquals(scalar);
         assertSame("should be same object", actual, actualC);
     }
 

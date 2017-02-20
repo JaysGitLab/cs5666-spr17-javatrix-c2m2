@@ -298,7 +298,7 @@ public class Javatrix extends java.lang.Object
         return actual;
     }
 
-	/**
+    /**
      * Return calling matrix A = A - B.
      *
      * @param actualB calling matrix
@@ -323,7 +323,7 @@ public class Javatrix extends java.lang.Object
         }
         return this;
     }
-	
+    
     /**
      * Construct a matrix C = A + B.
      *
@@ -738,6 +738,30 @@ public class Javatrix extends java.lang.Object
                 b = actualB.get(i, j);
                 c = a / b;
                 this.set(i, j, c);
+            }
+        }
+        return this;
+    }
+
+    /**
+     * Construct a matrix A = A * s.
+     *
+     * @param scalar multiplier value
+     * @return A * s
+     */
+    public Javatrix timesEquals(double scalar)
+    {
+        m = this.getRowDimension();
+        n = this.getColumnDimension();
+        double a;
+        double b;
+        for (int i = 0; i < m; i++)
+        {
+            for (int j = 0; j < n; j++)
+            {
+                a = this.get(i, j);
+                b = a * scalar;
+                this.set(i, j, b);
             }
         }
         return this;
